@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    color:#375380;
+    background-color:#fafafb;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +23,104 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+a{
+        color:#ff9e3f !important;
+}
+.img-logo{
+    position:absolute;
+    height:50px;
+}
+.nav-ncprogram{
+    padding-left:20%;
+}
+.btn-ncprogram{
+  color: #ff6a00;
+  background-color: #2d3e6e;
+  border-color: #2d3e6e;
+
+}
+.btn-ncprogram:hover,
+.btn-ncprogram:focus,
+.btn-ncprogram:active,
+.btn-ncprogram.active,
+.open .dropdown-toggle.btn-ncprogram {
+  color: #ffffff;
+  background-color: #2d3e6e;
+  border-color: #285e8e;
+}
+
+.btn-ncprogram:active,
+.btn-ncprogram.active,
+.open .dropdown-toggle.btn-ncprogram {
+  background-image: none;
+}
+
+.btn-ncprogram.disabled,
+.btn-ncprogram[disabled],
+fieldset[disabled] .btn-ncprogram,
+.btn-ncprogram.disabled:hover,
+.btn-ncprogram[disabled]:hover,
+fieldset[disabled] .btn-ncprogram:hover,
+.btn-ncprogram.disabled:focus,
+.btn-ncprogram[disabled]:focus,
+fieldset[disabled] .btn-ncprogram:focus,
+.btn-ncprogram.disabled:active,
+.btn-ncprogram[disabled]:active,
+fieldset[disabled] .btn-ncprogram:active,
+.btn-ncprogram.disabled.active,
+.btn-ncprogram[disabled].active,
+fieldset[disabled] .btn-ncprogram.active {
+  background-color: #2d3e6e;
+  border-color: #357ebd;
+}
+.btn-ncprogram .caret
+{
+  border-top-color: #fff;
+}
+.dropup .btn-ncprogram .caret
+{
+  border-bottom-color: #fff;
+}
+.carousel-caption{
+   left:15% !important;
+   top:10%;
+   text-align:left;
+}
+.img-slide{
+    border-radius:50%;
+    border:solid 3px #ffffff;
+    height:100px;
+}.img-default{
+    border-radius:50%;
+    border:solid 3px #ffffff;
+ }
+
+/* fade on slider */
+.carousel-fade .carousel-inner .item {
+    opacity: 0;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+}
+
+.carousel-fade .carousel-inner .active {
+    opacity: 1 !important;
+}
+
+    .carousel-fade .carousel-inner .active.left,
+    .carousel-fade .carousel-inner .active.right {
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+    }
+
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+}
+
+.carousel-fade .carousel-control {
+    z-index: 2;
 }

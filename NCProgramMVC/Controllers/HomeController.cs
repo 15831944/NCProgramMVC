@@ -22,8 +22,37 @@ namespace NCProgramMVC.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contatti di riferimento";
 
+            return View();
+        }
+
+        public ActionResult Mission()
+        {
+            return View();
+        }
+        public ActionResult Storia()
+        {
+            return View();
+        }
+        public ActionResult Servizi()
+        {
+            return View();
+        }
+        public ActionResult Software()
+        {
+            return View();
+        }
+        public ActionResult TDM()
+        {
+            return View();
+        }
+        public ActionResult CIMCO()
+        {
+            return View();
+        }
+        public ActionResult Download()
+        {
             return View();
         }
     }
