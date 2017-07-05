@@ -24,15 +24,19 @@ select,
 textarea {
     max-width: 280px;
 }
-a{
+.arancio{
         color:#ff9e3f !important;
+}
+.hrl {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0));
 }
 .img-logo{
     position:absolute;
     height:50px;
 }
 .nav-ncprogram{
-    padding-left:20%;
 }
 .btn-ncprogram{
   color: #ff6a00;
@@ -96,31 +100,103 @@ fieldset[disabled] .btn-ncprogram.active {
     border:solid 3px #ffffff;
  }
 
-/* fade on slider */
-.carousel-fade .carousel-inner .item {
-    opacity: 0;
-    -webkit-transition-property: opacity;
-    -moz-transition-property: opacity;
-    -o-transition-property: opacity;
-    transition-property: opacity;
+
+.img-usr {
+    height: 50px;
+    border: solid 2px #fff;
+    border-radius: 50%;
 }
 
-.carousel-fade .carousel-inner .active {
-    opacity: 1 !important;
+.navi {
+    margin: 0;
+    padding: 0;
 }
 
-    .carousel-fade .carousel-inner .active.left,
-    .carousel-fade .carousel-inner .active.right {
-        left: 0;
-        opacity: 0;
-        z-index: 1;
+    .navi a {
+        text-decoration: none;
+        color: #fff !important;
+        font-weight: bold;
+        transition: all 0.8s ease;
+        font-size: 1.2em;
     }
 
-.carousel-fade .carousel-inner .next.left,
-.carousel-fade .carousel-inner .prev.right {
-    opacity: 1;
+    .navi li {
+        color: #fff !important;
+    }
+
+        .navi li div {
+            font-size: 1.7em;
+            padding: 12px 13px 0px 13px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .navi li a span {
+            transition: all 0.8s ease;
+            color: #000;
+            font-size: 0.1em;
+            overflow: no-content;
+            z-index: 20;
+            -ms-transform: scale(0,0); /* IE 9 */
+            -webkit-transform: scale(0,0); /* Chrome, Safari, Opera */
+            transform: scale(0,0);
+            display: none;
+            background-color: rgba(235, 235, 235, 0.00);
+            bottom: 40px;
+        }
+
+    .navi a:hover span {
+        position: absolute;
+        display: flex;
+        transition: all 0.8s ease;
+        text-shadow: 0px 0px 10px #fff;
+        color: #22486F;
+        -ms-transform: scale(5,5); /* IE 9 */
+        -webkit-transform: scale(5,5); /* Chrome, Safari, Opera */
+        transform: scale(5,5);
+        margin-top: 12px;
+        background-color: rgba(235, 235, 235, 0.80);
+        padding: 0px 1px 1px 1px;
+        border-radius: 1px;
+    }
+.navi2 {
+    margin: 0;
+    padding: 0;
 }
 
-.carousel-fade .carousel-control {
-    z-index: 2;
-}
+    .navi2 a {
+        text-decoration: none;
+        color: #ff9e3f !important;
+        font-weight: bold;
+        transition: all 0.8s ease;
+    }
+
+    .navi2 li {
+        color: #fff !important;
+    }
+
+        .navi2 li div {
+            padding: 0px 13px 0px 13px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .navi2 li a span {
+            transition: all 0.8s ease;
+            color: #000;
+            overflow: no-content;
+            z-index: 20;
+            display: none;
+            background-color: rgba(235, 235, 235, 0.00);
+        }
+
+    .navi2 a:hover span {
+        position: absolute;
+        display: flex;
+        transition: all 0.8s ease;
+        text-shadow: 0px 0px 10px #fff;
+        color: #22486F;
+        background-color: rgba(235, 235, 235, 0.80);
+        padding: 0px 1px 1px 1px;
+        border-radius: 1px;
+    }

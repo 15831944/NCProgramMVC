@@ -1,0 +1,72 @@
+﻿@model NCProgramMVC.Models.Slide
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container body-content">
+    <h2>Dettagli slide</h2>
+    <hr />
+    <div class="row">
+        <div class="col col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Titolo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Titolo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sottotitolo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sottotitolo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descrizione)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.Descrizione)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Sfondo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Sfondo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Posizione)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Posizione)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Pubblica)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pubblica)
+                </dd>
+
+            </dl>
+
+        </div>
+        <div class="col col-md-6">
+            <img src="@Url.Content("~/Content/Immagini/Slides/" + Model.Sfondo)" class="img-responsive">
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Modifica", "Edit", new { id = Model.Slide_Id }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Torna alla lista", "Index", null, new { @class = "btn btn-primary" })
+    </p>
+</div>

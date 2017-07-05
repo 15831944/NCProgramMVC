@@ -5,18 +5,39 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right navi2">
         <li>
-            @Html.ActionLink("Salve " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <div class="pull-right">
+                <a href="@Url.Action("IndexUs", "UsersAdmin")">
+                    @if (File.Exists(Server.MapPath("~/Content/Immagini/FotoIscritti/" + @User.Identity.GetUserId() + ".jpg")))
+                    {
+                        <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @User.Identity.GetUserId() + ".jpg")" /><span>Gestisci profilo</span>
+
+                    }
+                    else
+                    {
+                        <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" /><span>@User.Identity.Name <br />Gestisci profilo</span>
+                    }
+                </a>
+            </div>
+            <div class="pull-right">
+
+                <h4><a href="javascript:document.getElementById('logoutForm').submit()" class="fa fa-sign-out arancio"><span>Logout</span></a></h4>
+            </div>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Disconnetti</a></li>
     </ul>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrazione", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Accedi", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <ul class="nav navbar-nav navbar-right ">
+        <li>
+            <div class="pull-right">
+                @Html.ActionLink(" ", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "fa fa-id-card-o fa-2x arancio", @Title="Registrati" })  
+
+                @Html.ActionLink(" ", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "fa fa-sign-in fa-2x arancio", @title="Login" })
+            </div>
+          
+        </li>
     </ul>
 }

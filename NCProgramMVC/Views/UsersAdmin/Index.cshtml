@@ -1,0 +1,84 @@
+﻿@model IEnumerable<NCProgramMVC.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Gestione utenti";
+}
+<div class="container body-content">
+
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col col-md-8">
+            <h3><span class="label label-primary"><span class="badge">@ViewBag.UtentiCount</span> Utenti registrati</span></h3>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Bloccato)
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cognome)
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+
+        @foreach (var item in Model)
+    {
+        var block = "";
+        if (item.Bloccato == true)
+        {
+            block = "alert alert-danger";
+        }
+        else
+        {
+            block = "";
+        }
+    <tr class="@block">
+        <td>
+            @Html.CheckBoxFor(modelItem => item.Bloccato)
+        </td>
+        <td>
+            @if (File.Exists(@Server.MapPath("/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")))
+                {
+                <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/" + @Html.DisplayFor(modelItem => item.Id) + ".jpg")" />
+                }
+                else
+                {
+                <img class="img-usr" src="@Url.Content("~/Content/Immagini/FotoIscritti/Anonimous.jpg")" />
+                }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+
+
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil-square-o fa-2x" })
+        </td>
+    </tr>
+    }
+
+    </table>
+</div>

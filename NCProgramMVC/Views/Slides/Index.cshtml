@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NCProgramMVC.Models.Slide>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<hr />
+<div class="container body-content">
+
+    <p>
+        <a href="@Url.Action("Create", "Slides")" class="btn btn-primary"><span class="badge">@ViewBag.SlideCount</span> Nuovo</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titolo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sottotitolo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sfondo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Posizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pubblica)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titolo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sottotitolo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sfondo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Posizione)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pubblica)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Slide_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Slide_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Slide_Id })
+                </td>
+            </tr>
+}
+
+    </table>
+</div>

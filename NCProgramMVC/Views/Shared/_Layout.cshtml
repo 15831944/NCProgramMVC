@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - NCProgram</title>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -22,9 +23,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("TDM System", "TDM", "Home")</li>
-                    <li>@Html.ActionLink("CIMCO", "CIMCO", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class="arancio"})</li>
+                    <li>@Html.ActionLink("TDM System", "TDM", "Home", null, new { @class = "arancio" })</li>
+                    <li>@Html.ActionLink("CIMCO", "CIMCO", "Home", null, new { @class = "arancio" })</li>
                     <li></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -37,18 +38,43 @@
         <hr />
         <footer>
             <div class="row">
-                <div class="col col-md-6">
+                <div class="col col-md-6 arancio">
                     &copy; @DateTime.Now.Year - NCProgram Web App
                 </div>
                 <div class="col col-md-6 text-right">
                     <h1>
-                        @Html.ActionLink(" ", "Download", "Home", null, new { @class = "glyphicon glyphicon-download-alt", title = "Area download" })
-                    @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "glyphicon glyphicon-edit", title = "Contatti" })
+                        @Html.ActionLink(" ", "Download", "Home", null, new { @class = "glyphicon glyphicon-download-alt arancio", title = "Area download" })
+                    @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "glyphicon glyphicon-edit arancio", title = "Contatti" })
                     </h1>
                </div>
             </div>
         </footer>
     </div>
+
+    @*Inizio barra amministratore bottom - gestione utenti ruoli menu splash documenti*@
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div class="navbar navbar-inverse navbar-fixed-bottom navi">
+            <div class="container">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav btn-group">
+                        <li><div><a href="@Url.Action("Index", "RolesAdmin")" class="glyphicon glyphicon-tag"><span>Gestione ruoli</span></a></div></li>
+                        <li><div><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"><span>Gestione utenti</span></a></div></li>
+                        <li><div><a href="@Url.Action("Index", "Documentis")" class="fa fa-file-pdf-o"><span>Gestione documenti</span></a></div></li>
+                        <li><div><a href="@Url.Action("Index", "Slides")" class="fa fa-slideshare"><span>Gestione slide</span></a></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    @*Fine barra barra amministratore bottom - gestione utenti ruoli*@
+
+
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
