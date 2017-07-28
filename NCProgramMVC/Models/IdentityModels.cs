@@ -74,7 +74,30 @@ namespace NCProgramMVC.Models
         public bool Riservato { get; set; }
     }
 
+    public class Servizi
+    {
+        [Key]
+        public int Servizio_Id { get; set; }
+        [Display(Name ="Categoria servizio")]
+        public string Servizio { get; set; }
+        [Display(Name ="Descrizione")]
+        public string Descrizione { get; set; }
 
+        public virtual ICollection<ServiziDett> Servizis { get; set; }
+
+    }
+
+    public class ServiziDett
+    {
+        [Key]
+        public int ServizoDett_Id { get; set; }
+        public int Servizio_Id { get; set; }
+        public virtual Servizi Servizio { get; set; }
+        [Display(Name ="Nome del servizio")]
+        public string ServizioDett { get; set; }
+        [Display(Name ="Descrizione")]
+        public string Descrizione { get; set; }
+    }
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -89,6 +112,8 @@ namespace NCProgramMVC.Models
 
         public DbSet<Slide> Slides { get; set; }
         public DbSet<Documenti> Documentis { get; set; }
+        public DbSet<Servizi> Servizis { get; set; }
+        public DbSet<ServiziDett> ServiziDetts { get; set; }
     }
 
 }

@@ -5,16 +5,17 @@
 }
 <div class="container body-content">
 
-    <h2>Create</h2>
+    <h2>Pubblica nuovo documento</h2>
     <hr />
     <div class="container body-content">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Create", "Documentis", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-
+            <input type="file" name="file" id="file" />
+            <h3 class="badge">Dimensione massima file o gruppo di file 3,5M</h3>
+            <h3 class="text-danger">@ViewBag.Message</h3><br />
             <div class="form-horizontal">
-                <h4>Documenti</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -34,14 +35,6 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Nomefile, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nomefile, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nomefile, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
                     @Html.LabelFor(model => model.Riservato, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
@@ -53,14 +46,14 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Aggiungi" class="btn btn-success" />
+                        @Html.ActionLink("Torna alla lista", "Index", null, new { @class = "btn btn-primary" })
+
+
                     </div>
                 </div>
             </div>
         }
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     </div>
 </div>

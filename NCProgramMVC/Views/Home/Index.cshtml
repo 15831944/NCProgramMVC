@@ -3,14 +3,17 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<!--Inizio sezione slide--> 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+
+<!--Se ci sono slide pubblicate inizio sezione slide--> 
+@if (ViewBag.SlidesCount > 0)
+{
+    <div id="carousel1" class="carousel slide">
+        <!-- Indicators -->
         @*<ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>*@
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                <li data-target="#carousel1" data-slide-to="2"></li>
+            </ol>*@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
@@ -22,9 +25,10 @@
                     var active = i == 1 ? "active" : "";
 
                     <div class="item @active">
-                        <img src="@Url.Content("~/Content/Immagini/" + @item.Sfondo)" alt="...">
+                        <img src="@Url.Content("~/Content/Immagini/Slides/" + @item.Sfondo)" alt="...">
                         <div class="carousel-caption">
                             <h4>@item.Titolo</h4>
+                            <h3>Sottotitolo</h3>
                             <h3>@Html.Raw(@item.Descrizione)</h3>
                         </div>
                     </div>
@@ -32,115 +36,67 @@
 
             }
         </div>
-        @*<div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="~/Content/Immagini/Uno.jpg" alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="~/Content/Immagini/Due.jpg" alt="...">
-                    <div class="carousel-caption">
-                        ...
-                    </div>
-                </div>
-                ...
-            </div>*@
-
         <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carousel1" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-</div>
+    </div>
+
+                }
 <!--Fine sezione slide-->
 <div class="container body-content">
     <div class="row">
-        <div class="col-md-6">
-                    
-                    <h2 class="text-center">Mission</h2>
-            <div class="row">
-                <div class="col col-md-4 text-right">
-                    <img class="img-circle img-responsive img-thumbnail" src="~/Content/Immagini/mission1.jpg" />
-                </div>
-                <div class="col col-md-8">
-                    <p class="text-justify">
+        <div class="col-md-4 text-center div-homepage">
+            <a href="@Url.Action("Servizi", "Home")"><img src="~/Content/Immagini/Servizi.png" /></a>
+            <h2 class="text-center">Servizi</h2>
+            <p class="text-justify">
+                La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici,
+                la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla
+                fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive,
+                orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno.<br />L’attività di
+                programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.
+                @Html.ActionLink(" ", "Servizi", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
+            </p>
+        </div>
+       <div class="col-md-4 text-center div-homepage">
+            <a href="@Url.Action("Mission", "Home")"><img src="~/Content/Immagini/Mission.png" /></a>
+            <h2 class="text-center">Mission</h2>
+            <p class="text-justify">
                         L’innovazione e la ricerca di soluzioni all’avanguardia, per i settori produttivi della meccanica,
                         sono da sempre stati gli argomenti prioritari di NC Program. Questa continua ricerca è poi divulgata
                         alla nostra clientela che può beneficiare delle esperienze raccolte, traendone così vantaggio e acquisendo
-                        nuove tecnologie nell’ambito produttivo.
-
+                        nuove tecnologie nell’ambito produttivo.<br/>
                         Diffondere le nostre esperienze e le nostre conoscenze è sempre stato al centro delle nostre attività.
-
                         Le imprese impossibili sono da sempre sinonimo di sfida e in questo NC Program è abituata, per noi le sfide sono la quotidianità.
-                        @Html.ActionLink(" ", "Mission", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right" })
+                        @Html.ActionLink(" ", "Mission", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
                     </p>
-
-                </div>
-            </div>
-
-                </div>
-        <div class="col-md-6">
+         </div>
+        <div class="col-md-4 text-center div-homepage">
+            <a href="@Url.Action("Storia", "Home")"><img src="~/Content/Immagini/Storia.png" /></a>
             <h2 class="text-center">Storia</h2>
-            <div class="row">
-                <div class="col col-md-4 text-right">
-                    <img class="img-circle img-thumbnail" src="~/Content/Immagini/storia.jpg" />
-                </div>
-                <div class="col col-md-8">
-                    <p class="text-justify">
-                        NC Program nasce nel 1996 con l’attività di Programmazione NC e Corsi di Uso e Programmazione NC.
-
-                        L’esperienza nelle lavorazioni meccaniche, ha fatto sì che venissero sempre di più maturate esperienze nel
-                        campo dell’utensileria meccanica, portandoci a studiare utensili speciali per la riduzioni di tempi di lavorazione.
-
-                        Successivamente NC Program si è accorta che era necessario un software in grado di gestire gli assiemi utensili.
-                        Da questo argomento nel 2005 si è deciso di adottare il software TDM di TDM Systems, membro di Sandvik Group e da subito NC Program
-                        @Html.ActionLink(" ", "Storia", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right" })
-                    </p>
-                </div>
-               </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <h2 class="text-center">Servizi</h2>
-                    <div class="row">
-                        <div class="col col-md-4 text-right">
-                            <img class="img-circle img-thumbnail" src="~/Content/Immagini/servizi.jpg" />
-                        </div>
-                        <div class="col col-md-8">
-                            <p class="text-justify">
-                                La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici,
-                                la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla
-                                fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive,
-                                orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno. L’attività di
-                                programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.
-                                @Html.ActionLink(" ", "Servizi", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right" })
-                            </p>
-                        </div>
-                        </div>
-                  </div>
-                <div class="col-md-6">
-                    <h2 class="text-center">Software</h2>
-                    <div class="row">
-                        <div class="col col-md-4 text-right">
-                            <img class="img-circle img-thumbnail" src="~/Content/Immagini/software.png" />
-                        </div>
-                        <div class="col col-md-8">
-                            <p class="text-justify">
-                                Negli ultimi anni la società ha voluto evolvere la propria attività, vista l’esperienza maturata nell’ambito dei servizi,
-                                introducendo la rivendita di una serie di software a supporto della produzione. Dal software possono arrivare riduzioni
-                                significative in tempi produttivi, facendo ordine e razionalizzando gli strumenti di lavoro, proiettando così l’argomento
-                                alla “riduzione dei costi produttivi”. I software introdotti svariano da: trasmissione dati DNC, Tool Data Management – gestione degli utensili,
-                                OEE – Overall @Html.ActionLink(" ", "Software", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right" })
-                            </p>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+            <p class="text-justify">
+                NC Program nasce nel 1996 con l’attività di Programmazione NC e Corsi di Uso e Programmazione NC.
+                L’esperienza nelle lavorazioni meccaniche, ha fatto sì che venissero sempre di più maturate esperienze nel
+                campo dell’utensileria meccanica, portandoci a studiare utensili speciali per la riduzioni di tempi di lavorazione.<br/>
+                Successivamente NC Program si è accorta che era necessario un software in grado di gestire gli assiemi utensili.
+                Da questo argomento nel 2005 si è deciso di adottare il software TDM di TDM Systems, membro di Sandvik Group e da subito NC Program
+                @Html.ActionLink(" ", "Storia", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
+            </p>
+        </div>
+    </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#carousel1').carousel({
+                interval: 5000,
+            })
+        });
+    </script>
+    }

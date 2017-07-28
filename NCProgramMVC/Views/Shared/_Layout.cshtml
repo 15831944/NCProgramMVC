@@ -11,9 +11,10 @@
 
 </head>
 <body>
+
     <div class="navbar navbar-default navbar-fixed-top">
-        <a href="@Url.Content("~/Home/Index/")" class="navbar-brand"><img class="img-logo" src="~/Content/Immagini/Logo.png" /></a>
-        <div class="container nav-ncprogram">
+        <a href="@Url.Content("~/Home/Index/")" class="navbar-brand"><img class="img-logo1" src="~/Content/Immagini/Logo.png" /></a>
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -23,33 +24,46 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class="arancio"})</li>
                     <li>@Html.ActionLink("TDM System", "TDM", "Home", null, new { @class = "arancio" })</li>
                     <li>@Html.ActionLink("CIMCO", "CIMCO", "Home", null, new { @class = "arancio" })</li>
-                    <li></li>
+                    <li>@Html.ActionLink("SolutionWare", "Mazac", "Home", null, new { @class = "arancio" })</li>
+                    @*Menu autenticati*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink(" ", "IndexDoc", "Home", null, new { @class = "glyphicon glyphicon-download-alt arancio", title = "Area download" })
+                        </li>
+                    }
+                    <li>
+                        <a href="@Url.Content("~/Home/Index/")" class="navbar-brand"><img class="img-logo" src="~/Content/Immagini/Logo.png" /></a>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right ">
+                    <li>
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                </ul>
             </div>
-        </div>
+       </div>
     </div>
         @RenderBody()
-    <div class="container body-content">
 
-        <hr />
+        <hr class="hrl" />
         <footer>
-            <div class="row">
-                <div class="col col-md-6 arancio">
-                    &copy; @DateTime.Now.Year - NCProgram Web App
+            <div class="row arancio">
+                <div class="col col-md-6">
+                    <div class="pull-left">
+                        &copy; @DateTime.Now.Year - NCProgram Web App
+
+                    </div>
                 </div>
-                <div class="col col-md-6 text-right">
-                    <h1>
-                        @Html.ActionLink(" ", "Download", "Home", null, new { @class = "glyphicon glyphicon-download-alt arancio", title = "Area download" })
-                    @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "glyphicon glyphicon-edit arancio", title = "Contatti" })
-                    </h1>
+                <div class="col col-md-6">
+                    <span>
+                    @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "fa fa-pencil-square-o fa-3x arancio", title = "Contatti" })
+                    </span>
                </div>
             </div>
         </footer>
-    </div>
 
     @*Inizio barra amministratore bottom - gestione utenti ruoli menu splash documenti*@
     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
@@ -67,6 +81,7 @@
                         <li><div><a href="@Url.Action("Index", "UsersAdmin")" class="glyphicon glyphicon-user"><span>Gestione utenti</span></a></div></li>
                         <li><div><a href="@Url.Action("Index", "Documentis")" class="fa fa-file-pdf-o"><span>Gestione documenti</span></a></div></li>
                         <li><div><a href="@Url.Action("Index", "Slides")" class="fa fa-slideshare"><span>Gestione slide</span></a></div></li>
+                        <li><div><a href="@Url.Action("Index", "Servizis")" class="fa fa-object-group"><span>Gestione servizi</span></a></div></li>
                     </ul>
                 </div>
             </div>

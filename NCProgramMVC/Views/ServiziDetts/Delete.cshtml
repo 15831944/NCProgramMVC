@@ -1,0 +1,50 @@
+﻿@model NCProgramMVC.Models.ServiziDett
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container body-content">
+
+    <h2>Elimina servizio</h2>
+
+    <h3>Se sicuro di cancellare questo servizio?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Servizio.Servizio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Servizio.Servizio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ServizioDett)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ServizioDett)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Descrizione)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Cancella" class="btn btn-danger" />
+                @Html.ActionLink("Torna", "Index", "Servizis", null, new {@class="btn btn-primary" })
+            </div>
+        }
+    </div>
+</div>

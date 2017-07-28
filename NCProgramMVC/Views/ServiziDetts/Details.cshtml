@@ -1,0 +1,44 @@
+﻿@model NCProgramMVC.Models.ServiziDett
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>ServiziDett</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Servizio.Servizio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Servizio.Servizio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ServizioDett)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ServizioDett)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descrizione)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ServizoDett_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

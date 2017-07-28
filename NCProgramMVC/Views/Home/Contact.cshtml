@@ -1,22 +1,71 @@
-﻿@{
+﻿@model NCProgramMVC.Models.InfoViewModels
+@{
     ViewBag.Title = "Contatti";
 }
 <div class="container body-content">
 
     <h2>@ViewBag.Title</h2>
     <h3>@ViewBag.Message</h3>
+    <div class="row">
+        <div class="col-md-4"><address>
+            N.C.Program<br />
+            Nova Milanese<br />
+            <abbr title="Telefono fisso">Tel:</abbr>
+                02222222<br />
+            <abbr title="Cellulare">Cell:</abbr>
+            335666666
+            </address>
 
-    <address>
-        N.C.Program<br />
-        Nova Milanese<br />
-        <abbr title="Telefono fisso">Tel:</abbr>
-        02222222<br/>
-        <abbr title="Cellulare">Cell:</abbr>
-        335666666
-    </address>
+            <address>
+                <strong>Supporto:</strong>   <a href="mailto:Support@example.com">Support@ncprogram.it</a><br />
+                <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@ncprogram.it</a>
+            </address>
+        </div>
+        <div class="col-md-8">
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="col col-md-8">
+                    <form>
+                        <div class="form-group">
+                            <div class="col col-md-10">
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Il tuo nome" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control", @placeholder = "Il tuo cognome" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "La tua mail" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", @placeholder = "Telefono o cellulare" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(m => m.Messaggio, new { @class = "form-control", @placeholder = "Il tuo messaggio" })
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Invia messaggio</button>
+                    </form>
+                </div>
 
-    <address>
-        <strong>Supporto:</strong>   <a href="mailto:Support@example.com">Support@ncprogram.it</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@ncprogram.it</a>
-    </address>
+            }
+
+        </div>
+    </div>
+    <hr class="hrl" />
+    <div class="embed-responsive embed-responsive-4by3 ">
+        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2791.6560808915465!2d9.196383415955655!3d45.59745803256186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786be96d8f3481f%3A0xa24d093c502f81d1!2sNC+Program+S.r.l.!5e0!3m2!1sit!2sit!4v1501084140246"></iframe>
+    </div>
 </div>

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NCProgramMVC.Models;
+using System.Net.Mail;
 
 namespace NCProgramMVC.Controllers
 {
@@ -206,6 +207,20 @@ namespace NCProgramMVC.Controllers
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Non rivelare che l'utente non esiste o non è confermato
+                    //Invio mail personalizzato 
+                    string code1 = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl1 = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code1 }, protocol: Request.Url.Scheme);
+                    var message1 = new MailMessage();
+                    message1.From = new MailAddress("webservice@cr-consult.it");
+                    message1.To.Add(new MailAddress(model.Email));
+                    message1.Subject = "Reimposta password www.ncprogram.it";
+                    message1.Body = "Per reimpostare la password, fare clic sul collegamento qui sotto <br/><br/>" + callbackUrl1;
+                    message1.IsBodyHtml = true;
+                    using (var smtp = new SmtpClient())
+                    {
+                        await smtp.SendMailAsync(message1);
+                    }
+                    //fine invio mail personalizzato
                     return View("ForgotPasswordConfirmation");
                 }
 

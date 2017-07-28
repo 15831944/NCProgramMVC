@@ -1,0 +1,48 @@
+﻿@model IEnumerable<NCProgramMVC.Models.ServiziDett>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container body-content">
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Servizio.Servizio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServizioDett)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servizio.Servizio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServizioDett)
+                </td>
+                <td>
+                    @Html.Raw(item.Descrizione)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ServizoDett_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ServizoDett_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ServizoDett_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -3,31 +3,33 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <div class="container body-content">
-
-    <h2>Index</h2>
+    <h2>Sezione documenti</h2>
     <hr />
-    <div class="container body-content">
-
         <p>
-            @Html.ActionLink("Create New", "Create")
+            <a href="@Url.Action("Create", "Documentis")" class="btn btn-primary"><span class="badge">@ViewBag.DocumentiCount</span> Nuovo</a>
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Titolo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descrizione)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nomefile)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Riservato)
-                </th>
-                <th></th>
-            </tr>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titolo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descrizione)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nomefile)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Riservato)
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
 
             @foreach (var item in Model) {
                 <tr>
@@ -44,13 +46,20 @@
                         @Html.DisplayFor(modelItem => item.Riservato)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.Documenti_Id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.Documenti_Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.Documenti_Id })
+                        @Html.ActionLink(" ", "Edit", new { id=item.Documenti_Id }, new { @class= "fa fa-pencil-square-o fa-2x text-success", @title="Modifica"})
+                        @Html.ActionLink(" ", "Delete", new { id=item.Documenti_Id }, new { @class = "fa fa-trash-o fa-2x text-danger", @title = "Cancella" })
                     </td>
                 </tr>
 }
 
         </table>
-    </div>
 </div>
+@section Scripts{
+        <script src="~/Scripts/jquery.filtertable.js"></script>
+        <script>
+                        $(document).ready(function () {
+                            $('table').filterTable();
+                        });
+        </script>
+  
+    }

@@ -20,7 +20,7 @@ namespace NCProgramMVC.Controllers
         // GET: Slides
         public ActionResult Index()
         {
-            var slide = db.Slides.ToList();
+            var slide = db.Slides.OrderBy(s=>s.Posizione).ToList();
             ViewBag.SlideCount = slide.Count();
             return View(slide);
         }

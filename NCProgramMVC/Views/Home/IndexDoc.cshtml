@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NCProgramMVC.Models.Documenti>
+
+@{
+    ViewBag.Title = "Download";
+}
+<div class="container body-content">
+
+    <h2>Download</h2>
+    <hr />
+    <div class="container body-content">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titolo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descrizione)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nomefile)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Riservato)
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("Download", "Documentis", new {id = item.Documenti_Id }))
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titolo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descrizione)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nomefile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Riservato)
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
+
+                    </td>
+                </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>
