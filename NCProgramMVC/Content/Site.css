@@ -1,14 +1,20 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    color:#375380;
-    background-color:#eeeeee;
+    color: #375380;
+    background-color: #eeeeee;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 20px;
+}
+p {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -24,51 +30,71 @@ select,
 textarea {
     max-width: 280px;
 }
-.arancio{
-        color:#ff9e3f !important;
+
+.arancio {
+    color: #ef7a1b !important;
 }
+.blu {
+    color: #375380 !important;
+}
+
 .hrl {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0));
 }
+
 .hr2 {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to left, rgba(255, 106, 0, 0), rgba(255, 106, 0, 0.8));
 }
-.img-logo{
-    height:35px;
-    visibility:visible;
-    margin:-10px 0px 0px 10px;
+.img-prodotti{
+    display: inline;
 }
+.img-logo {
+    height: 50px;
+    visibility: visible;
+    margin: 10px 0px 0px 10px;
+    float:right;
+}
+
 .img-logo1 {
     height: 35px;
     visibility: hidden;
     margin: -10px 0px 0px 10px;
 }
-@media (max-width:768px){
-    .img-logo {
-        visibility: hidden;
-    }
-
-    .img-logo1 {
-        visibility: visible;
-    }
-}
-.img-servizio{
-    width: 100%;
-}
-.img-servizio-sm{
-    width:40px;
-    display:block;
-}
 @media (max-width: 992px) {
-    .img-servizio {
-        width: 50%;
+    .img-logo {
+        height: 30px;
+        visibility: visible;
+        margin: 10px 0px 0px 10px;
+    }
+}
+    @media (max-width:768px) {
+        .img-logo {
+            visibility: hidden;
+        }
+
+        .img-logo1 {
+            visibility: visible;
+        }
     }
 
-}
+    .img-servizio {
+        width: 100%;
+    }
+
+    .img-servizio-sm {
+        width: 40px;
+        display: block;
+    }
+
+    @media (max-width: 992px) {
+        .img-servizio {
+            width: 50%;
+        }
+    }
 
     .div-homepage {
         padding: 25px;
@@ -207,7 +233,7 @@ textarea {
 
         .navi2 a {
             text-decoration: none;
-            color: #ff9e3f !important;
+            color: #ef7a1b !important;
             font-weight: bold;
             transition: all 0.8s ease;
         }
@@ -241,3 +267,10 @@ textarea {
             padding: 0px 1px 1px 1px;
             border-radius: 1px;
         }
+
+    .navbar-default {
+        height: 80px;
+    }
+    .navbar-default a{
+        bottom: -30px;
+    }

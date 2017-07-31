@@ -5,7 +5,7 @@
 }
 <div class="container body-content">
 
-    <h2 class="text-center"><img src="~/Content/Immagini/Servizi.png" />Servizi</h2>
+    <h2 class="text-center"><img src="~/Content/Immagini/NCServizi.png" /></h2>
     <hr class="hrl" />
    
 <p>La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici, la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive, orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno. L’attività di programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.</p>
@@ -20,9 +20,12 @@
                     <h2 class="arancio">
                         @Html.DisplayFor(modelItem => item.Servizio)
                     <!---Trigger collapse-->
-                    <a class="badge" role="button" data-toggle="collapse" href="#@item.Servizio_Id" aria-expanded="false" aria-controls="@item.Servizio_Id">
-                        <span class="fa fa-chevron-down"> <strong>@item.Servizis.Count()</strong> Servizi attivi</span><br />
-                    </a>
+                        @if (@item.Servizis.Count() != 0)
+                        {
+                            <a class="badge" role="button" data-toggle="collapse" href="#@item.Servizio_Id" aria-expanded="false" aria-controls="@item.Servizio_Id">
+                                <span class="fa fa-chevron-down"> <strong>@item.Servizis.Count()</strong> Servizi attivi</span><br />
+                            </a>
+                        }
                 </h2>
                     <!---Collapse servizi-->
                     <div class="collapse" id="@item.Servizio_Id">
@@ -38,6 +41,7 @@
                         </table>
                     </div>
                     <h4>@Html.Raw(item.Descrizione)</h4>
+                    <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Servizio})"><span class="fa fa-pencil-square-o"></span></a>
                 </div>
           </div>
         }

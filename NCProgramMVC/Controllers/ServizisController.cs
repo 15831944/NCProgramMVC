@@ -20,7 +20,7 @@ namespace NCProgramMVC.Controllers
         // GET: Servizis
         public ActionResult Index()
         {
-            var servizi = db.Servizis.ToList();
+            var servizi = db.Servizis.OrderBy(s => s.Servizio).ToList();
             ViewBag.ServiziCount = servizi.Count();
             return View(servizi);
         }
@@ -142,6 +142,8 @@ namespace NCProgramMVC.Controllers
                 return View(servizi);
             }
         }
+        
+        
         // GET: Servizis/Delete/5
         public ActionResult Delete(int? id)
         {

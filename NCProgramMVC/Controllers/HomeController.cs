@@ -80,6 +80,43 @@ namespace NCProgramMVC.Controllers
             return View(contatti);
         }
 
+        public ActionResult FormServizi(string servizio)
+        {
+            ViewBag.Message = "Richiesta info per";
+            ViewBag.Servizio = servizio;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> FormServizi(InfoSerViewModels contatti)
+        {
+
+            if (ModelState.IsValid)
+            {
+                MailMessage message = new MailMessage(
+                    "webservice@cr-consult.it",
+                    "cesare@cr-consult.eu",
+                    "Richiesta informazioni dal sito ncprogram.it",
+                    "Il giorno " + DateTime.Now + "<br/><strong>" +
+                    contatti.Nome + " " +
+                    contatti.Cognome + "</strong> [" +
+                    contatti.Email + "] " +
+                    "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it per il servizio <strong><em>" + 
+                    contatti.Servizio +
+                    "</strong></em><hr/>Richiesta: <strong>" +
+                    contatti.Messaggio +
+                    "</strong></li>"
+                    );
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                }
+                return RedirectToAction("FormOk", "Home");
+            }
+            return View(contatti);
+        }
+
         public ActionResult FormOk()
         {
             return View();
@@ -114,6 +151,12 @@ namespace NCProgramMVC.Controllers
             return View(servizi);
         }
 
+        [Authorize(Roles ="Admin")]
+        public ActionResult Prodotti()
+        {
+            return View();
+        }
+
         public ActionResult ServiziList()
         {
             return View();
@@ -124,16 +167,64 @@ namespace NCProgramMVC.Controllers
         }
         public ActionResult TDM()
         {
-            return View();
+            var prodotti = db.Tdms.OrderBy(s => s.Prodotto).ToList();
+            return View(prodotti);
         }
+
+        public ActionResult TdmDett(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TdmDett prodotti = db.TdmDetts.Find(id);
+            if (prodotti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(prodotti);
+        }
+
         public ActionResult CIMCO()
         {
-            return View();
+            var prodotti = db.Cimcoes.OrderBy(s => s.Prodotto).ToList();
+            return View(prodotti);
         }
+
+        public ActionResult CimcoDett(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CimcoDett servizi = db.CimcoDetts.Find(id);
+            if (servizi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(servizi);
+        }
+
         public ActionResult Mazac()
         {
-            return View();
+            var prodotti = db.Mazacams.OrderBy(s => s.Prodotto).ToList();
+            return View(prodotti);
         }
+
+        public ActionResult MazacDett(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MazacamDett servizi = db.MazacamDetts.Find(id);
+            if (servizi == null)
+            {
+                return HttpNotFound();
+            }
+            return View(servizi);
+        }
+
 
     }
 }

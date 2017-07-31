@@ -1,0 +1,15 @@
+﻿@model NCProgramMVC.Models.CimcoDett
+
+@{
+    ViewBag.Title = "CimcoDett";
+}
+<div class="container body-content">
+
+    <h2 class="text-center">@Html.DisplayFor(model => model.Prodotto.Prodotto)</h2>
+    <hr class="hrl" />
+    <h4>@Html.DisplayFor(model => model.ProdottoDett)</h4>
+    <hr class="hr2" />
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NCProgramMVC.Models.CimcoDett>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Prodotto.Prodotto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdottoDett)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prodotto.Prodotto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdottoDett)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CimcoDett_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CimcoDett_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CimcoDett_Id })
+        </td>
+    </tr>
+}
+
+</table>

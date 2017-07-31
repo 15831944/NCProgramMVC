@@ -1,0 +1,49 @@
+﻿@model NCProgramMVC.Models.MazacamDett
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container body-content">
+    <h2>Elimina prodotto</h2>
+
+    <h3>Se sicuro di cancellare questo prodotto??</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Prodotto.Prodotto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prodotto.Prodotto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProdottoDett)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProdottoDett)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descrizione)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Cancella" class="btn btn-danger" />
+                @Html.ActionLink("Torna", "Index", "Mazacams", null, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+</div>

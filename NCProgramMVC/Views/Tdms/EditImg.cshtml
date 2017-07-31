@@ -1,0 +1,26 @@
+﻿@model NCProgramMVC.Models.Tdm
+
+@{
+    ViewBag.Title = "EditImg";
+}
+<div class="container body-content">
+
+    <h2 class="text-center">Modifica immagine prodotti TDM</h2>
+    <hr class="hrl" />
+    @using (Html.BeginForm("EditImg", "Tdms", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="file" name="file" id="file" />
+        <h3 class="text-danger">Solo file .png</h3>
+        <h3 class="text-danger alert alert-danger">@ViewBag.Message</h3>
+        <div class="text-center">
+            <img src="@Url.Content("~/Content/Immagini/Tdm/" + @Model.Tdm_Id + ".png")" />
+
+        </div>
+        <hr class="hrl" />
+        <input type="submit" value="Modifica immagine" class="btn btn-success" />
+        @Html.ActionLink("Annulla", "Index", "Tdms", null, new { @class = "btn btn-danger" })
+
+    }
+</div>
+

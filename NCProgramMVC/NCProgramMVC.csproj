@@ -168,13 +168,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CimcoDettsController.cs" />
+    <Compile Include="Controllers\CimcoesController.cs" />
     <Compile Include="Controllers\DocumentisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MazacamDettsController.cs" />
+    <Compile Include="Controllers\MazacamsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ServiziDettsController.cs" />
     <Compile Include="Controllers\ServizisController.cs" />
     <Compile Include="Controllers\SlidesController.cs" />
+    <Compile Include="Controllers\TdmDettsController.cs" />
+    <Compile Include="Controllers\TdmsController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,12 +201,17 @@
     <Compile Include="Migrations\201707270722300_servizi.Designer.cs">
       <DependentUpon>201707270722300_servizi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707291038519_prodotti.cs" />
+    <Compile Include="Migrations\201707291038519_prodotti.Designer.cs">
+      <DependentUpon>201707291038519_prodotti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\FormsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Prodotti.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -211,6 +222,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Immagini\cimco.png" />
     <Content Include="Content\Immagini\cimco1.gif" />
     <Content Include="Content\Immagini\cimco2.gif" />
     <Content Include="Content\Immagini\cimco3.gif" />
@@ -220,8 +232,13 @@
     <Content Include="Content\Immagini\cimco7c.gif" />
     <Content Include="Content\Immagini\cimco8.png" />
     <Content Include="Content\Immagini\cimco9.gif" />
+    <Content Include="Content\Immagini\cimcosede.jpg" />
+    <Content Include="Content\Immagini\Cimco\1.png" />
     <Content Include="Content\Immagini\demo2.jpg" />
     <Content Include="Content\Immagini\demo3.jpg" />
+    <Content Include="Content\Immagini\LogoSfumato.png" />
+    <Content Include="Content\Immagini\Mazacam.png" />
+    <Content Include="Content\Immagini\Mazacam\1.png" />
     <Content Include="Content\Immagini\Mission.png" />
     <Content Include="Content\Immagini\demo1.jpg" />
     <Content Include="Content\Immagini\Due.jpg" />
@@ -230,6 +247,7 @@
     <Content Include="Content\Immagini\Logo.png" />
     <Content Include="Content\Immagini\LogoAC.jpg" />
     <Content Include="Content\Immagini\Mission.jpg" />
+    <Content Include="Content\Immagini\NCServizi.png" />
     <Content Include="Content\Immagini\Servizi\1.png" />
     <Content Include="Content\Immagini\Servizi\3.png" />
     <Content Include="Content\Immagini\Servizi\2.png" />
@@ -244,9 +262,11 @@
     <Content Include="Content\Immagini\Software.png" />
     <Content Include="Content\Immagini\software1.png" />
     <Content Include="Content\Immagini\storia.jpg" />
+    <Content Include="Content\Immagini\tdm.png" />
     <Content Include="Content\Immagini\tdm1.png" />
     <Content Include="Content\Immagini\tdm2.png" />
     <Content Include="Content\Immagini\tdm3.png" />
+    <Content Include="Content\Immagini\Tdm\1.png" />
     <Content Include="Content\Immagini\Tre.jpg" />
     <Content Include="Content\Immagini\Uno.jpg" />
     <Content Include="Content\Immagini\work.jpg.png" />
@@ -891,6 +911,44 @@
     <Content Include="Views\ServiziDetts\Index.cshtml" />
     <Content Include="Views\Home\ServiziDett.cshtml" />
     <Content Include="Views\Servizis\EditImg.cshtml" />
+    <Content Include="Views\Home\FormServizi.cshtml" />
+    <Content Include="Views\Tdms\Create.cshtml" />
+    <Content Include="Views\Tdms\Delete.cshtml" />
+    <Content Include="Views\Tdms\Details.cshtml" />
+    <Content Include="Views\Tdms\Edit.cshtml" />
+    <Content Include="Views\Tdms\Index.cshtml" />
+    <Content Include="Views\Cimcoes\Create.cshtml" />
+    <Content Include="Views\Cimcoes\Delete.cshtml" />
+    <Content Include="Views\Cimcoes\Details.cshtml" />
+    <Content Include="Views\Cimcoes\Edit.cshtml" />
+    <Content Include="Views\Cimcoes\Index.cshtml" />
+    <Content Include="Views\Mazacams\Create.cshtml" />
+    <Content Include="Views\Mazacams\Delete.cshtml" />
+    <Content Include="Views\Mazacams\Details.cshtml" />
+    <Content Include="Views\Mazacams\Edit.cshtml" />
+    <Content Include="Views\Mazacams\Index.cshtml" />
+    <Content Include="Views\TdmDetts\Create.cshtml" />
+    <Content Include="Views\TdmDetts\Delete.cshtml" />
+    <Content Include="Views\TdmDetts\Details.cshtml" />
+    <Content Include="Views\TdmDetts\Edit.cshtml" />
+    <Content Include="Views\TdmDetts\Index.cshtml" />
+    <Content Include="Views\CimcoDetts\Create.cshtml" />
+    <Content Include="Views\CimcoDetts\Delete.cshtml" />
+    <Content Include="Views\CimcoDetts\Details.cshtml" />
+    <Content Include="Views\CimcoDetts\Edit.cshtml" />
+    <Content Include="Views\CimcoDetts\Index.cshtml" />
+    <Content Include="Views\MazacamDetts\Create.cshtml" />
+    <Content Include="Views\MazacamDetts\Delete.cshtml" />
+    <Content Include="Views\MazacamDetts\Details.cshtml" />
+    <Content Include="Views\MazacamDetts\Edit.cshtml" />
+    <Content Include="Views\MazacamDetts\Index.cshtml" />
+    <Content Include="Views\Tdms\EditImg.cshtml" />
+    <Content Include="Views\Home\Prodotti.cshtml" />
+    <Content Include="Views\Mazacams\EditImg.cshtml" />
+    <Content Include="Views\Cimcoes\EditImg.cshtml" />
+    <Content Include="Views\Home\TdmDett.cshtml" />
+    <Content Include="Views\Home\CimcoDett.cshtml" />
+    <Content Include="Views\Home\MazacDett.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -917,6 +975,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707270722300_servizi.resx">
       <DependentUpon>201707270722300_servizi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707291038519_prodotti.resx">
+      <DependentUpon>201707291038519_prodotti.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,55 @@
+﻿@model NCProgramMVC.Models.InfoSerViewModels
+
+@{
+    ViewBag.Title = "Info servizi";
+}
+
+<div class="container body-content">
+
+    <h2 class="text-center">@ViewBag.Message <strong><em>@ViewBag.Servizio</em></strong></h2>
+    <hr class="hrl" />
+    <div class="row">
+        <div class="col-md-12 text-center">
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="col col-md-8">
+                    <form>
+                        <div class="form-group">
+                            <div class="col col-md-10">
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Il tuo nome" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control", @placeholder = "Il tuo cognome" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "La tua mail" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", @placeholder = "Telefono o cellulare" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(m => m.Messaggio, new { @class = "form-control", @placeholder = "Il tuo messaggio" })
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Invia messaggio</button>
+                    </form>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>

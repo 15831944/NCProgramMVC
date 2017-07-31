@@ -114,6 +114,12 @@ namespace NCProgramMVC.Models
         public DbSet<Documenti> Documentis { get; set; }
         public DbSet<Servizi> Servizis { get; set; }
         public DbSet<ServiziDett> ServiziDetts { get; set; }
+        public DbSet<Tdm> Tdms { get; set; }
+        public DbSet<TdmDett> TdmDetts { get; set; }
+        public DbSet<Cimco> Cimcoes { get; set; }
+        public DbSet<CimcoDett> CimcoDetts { get; set; }
+        public DbSet<Mazacam> Mazacams { get; set; }
+        public DbSet<MazacamDett> MazacamDetts { get; set; }
     }
 
 }

@@ -1,12 +1,63 @@
-﻿
+﻿@model IEnumerable<NCProgramMVC.Models.Mazacam>
+
+
 @{
     ViewBag.Title = "Mazac";
 }
 <div class="container body-content">
 
-    <h2 class="text-center">Mazac</h2>
+    <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/mazacam.png" /></h2>
     <hr class="hrl" />
-    <img src="~/Content/Immagini/work.jpg.png" />
-    <h1>Mi mancano i contenuti. <span class="text-danger"> Come i servizi andrebbe bene?</span></h1>
-    <hr class="hrl" />
+    <div class="row">
+        <div class="col col-md-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A3a-jyhMmUY"></iframe>
+            </div>
+        </div>
+        <div class="col col-md-6 text-center">
+            <div class="text-justify">
+                <h3>About MazaCAM</h3>
+                So, what is MazaCAM? MazaCAM is an advanced off-line programming system for the Mazak CNC machine tools.<br/>
+                But what does that mean exactly? It means that in addition to the conventional method of programming a Mazak (on the control), you can program your Mazaks completely off-line in your office, or even on the road. This in itself is only a small fraction of the capabilities and features of MazaCAM, these are some of the reasons why MazaCAM is an advanced off-line programming system.
+            </div>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <hr class="hr2" />
+        <div class="row">
+            <div class="col col-md-2 text-center">
+                <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Mazacam/" + @item.Mazacam_Id + ".png")" />
+            </div>
+            <div class=" col col-md-10">
+                <h2 class="arancio">
+                    @Html.DisplayFor(modelItem => item.Prodotto)
+                    <!---Trigger collapse-->
+                    @if (@item.Mazacams.Count() != 0)
+                    {
+                        <a class="badge" role="button" data-toggle="collapse" href="#@item.Mazacam_Id" aria-expanded="false" aria-controls="@item.Mazacam_Id">
+                            <span class="fa fa-chevron-down"> <strong>@item.Mazacams.Count()</strong> Servizi attivi</span><br />
+                        </a>
+                    }
+                </h2>
+                <!---Collapse servizi-->
+                <div class="collapse" id="@item.Mazacam_Id">
+                    <table class="table table-hover">
+                        @foreach (var item1 in item.Mazacams)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(@item1.ProdottoDett, "ServiziDett", "Home", new { id = item1.MazacamDett_Id }, null)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <h4>@Html.Raw(item.Descrizione)</h4>
+                <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
+            </div>
+        </div>
+    }
+
 </div>

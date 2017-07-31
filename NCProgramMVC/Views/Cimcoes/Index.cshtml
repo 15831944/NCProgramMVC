@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NCProgramMVC.Models.Cimco>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container body-content">
+
+    <h2 class="text-center">Prodotti CIMCO</h2>
+    <hr class="hrl" />
+
+    <p>
+        <a href="@Url.Action("Create", "Cimcoes")" class="btn btn-primary"><span class="badge">@ViewBag.ProdottiCount</span> Nuovo</a>
+
+    </p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Img</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prodotto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descrizione)
+                </th>
+            </tr>
+
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#@item.Cimco_Id" aria-expanded="false" aria-controls="@item.Cimco_Id">
+                        <span class="fa fa-chevron-down"> <strong>@item.Cimcos.Count()</strong></span>
+                    </button>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "Cimcoes", new { id = @item.Cimco_Id})"><span class="fa fa-pencil"></span></a>
+                    @if (@item.Cimcos.Count() == 0)
+                    {
+                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "Cimcoes", new { id = @item.Cimco_Id})"><span class="fa fa-remove"></span></a>
+                    }
+
+                </td>
+                <td>
+                    <a href="@Url.Action("EditImg", "Cimcoes", new {id = @item.Cimco_Id })">
+                        <img src="@Url.Content("~/Content/Immagini/Cimco/" + @item.Cimco_Id + ".png" )" class="img-servizio-sm" />
+                    </a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prodotto)
+                    <!---Area collapse per dettaglio prodotti CIMCO-->
+                    <div class="collapse" id="@item.Cimco_Id">
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "CimcoDetts", new { prodotto = @item.Cimco_Id})">Nuovo <span class="fa fa-plus"></span></a>
+                        <table class="table table-hover well">
+                            @foreach (var item1 in item.Cimcos)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-primary" href="@Url.Action("Edit", "CimcoDetts", new { id = @item1.CimcoDett_Id})"><span class="fa fa-pencil "></span></a>
+                                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "CimcoDetts", new { id = @item1.CimcoDett_Id})"><span class="fa fa-remove "></span></a>
+                                        @item1.ProdottoDett
+
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    @Html.Raw(item.Descrizione)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

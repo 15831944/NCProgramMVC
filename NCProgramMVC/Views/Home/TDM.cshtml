@@ -1,31 +1,12 @@
-﻿
+﻿@model IEnumerable<NCProgramMVC.Models.Tdm>
+
 @{
     ViewBag.Title = "TDM";
 }
 <div class="container body-content">
 
-    <h2 class="text-center">TDM</h2>
+    <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/tdm.png" /></h2>
     <hr class="hrl" />
-    <img src="~/Content/Immagini/work.jpg.png" />
-    <h1>Mi mancano i contenuti. <span class="text-danger"> Come i servizi andrebbe bene?</span></h1>
-    <hr class="hrl" />
-
-<p>Il modulo Base di TDM è un pacchetto completo per la gestione dei vostri dati utensili incluso: componenti, assemblaggi, elenchi fornitori, macchine utensili e materiali del pezzo in lavorazione.<br/>
-    Il modulo Base di TDM ha un menu strutturato suddiviso per classi, gruppi, tecnologie e processi di lavorazione.</p>
-    <div class="row">
-        <div class="col col-md-4">
-            <a href="~/Content/Immagini/tdm1.png"><img class="img-thumbnail" src="~/Content/Immagini/tdm1.png" /></a>
-
-        </div>
-        <div class="col col-md-4">
-            <a href="~/Content/Immagini/tdm2.png"><img class="img-thumbnail" src="~/Content/Immagini/tdm2.png" /></a>
-
-        </div>
-        <div class="col col-md-4">
-            <a href="~/Content/Immagini/tdm3.png"><img class="img-thumbnail" src="~/Content/Immagini/tdm3.png" /></a>
-
-        </div>
-   </div><hr/>
 
     <div class="row">
         <div class="col col-md-6">
@@ -34,9 +15,50 @@
             </div>
         </div>
         <div class="col col-md-6 text-center">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0lBtdTdGcaU"></iframe>
+            <div class="text-justify">
+                <h3>TDM Systems GmbH</h3> azienda di Tübingen operante nell’ambito software, è lo specialista leader nel Tool Lifecycle Management.<br />
+                Ormai da quasi 30 anni, TDM Systems offre alle industrie di asportazione truciolo soluzioni per ottimizzare i processi, grazie ad una pianificazione e ad un’erogazione ottimali dei loro utensili. In tale modo, il software TDM colma il gap, spesso notevole, fra pianificazione e produzione.<br />
+                Il suo database centralizzato integra tutti i sistemi, tutte le macchine e tutte le persone coinvolti nel processo di produzione: dall’ordine alla progettazione del pezzo in lavorazione, dalla pianificazione NC alla simulazione, fino alla preparazione degli ordini e all’organizzazione fisica del ciclo utensili a livello shopfloor.<br />
+                TDM Systems è una società controllata al 100% dal Gruppo SANDVIK. Dal suo Competence Center, l’azienda si mantiene in stretto contatto con diversi player internazionali della costruzione utensili, potendo così sviluppare al meglio i propri prodotti software per i requisiti del settore, soprattutto nell’ottica dell’Industria 4.0.
             </div>
         </div>
     </div>
+    @foreach (var item in Model)
+    {
+        <hr class="hr2" />
+            <div class="row">
+                <div class="col col-md-2 text-center">
+                    <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Tdm/" + @item.Tdm_Id + ".png")" />
+                </div>
+                <div class=" col col-md-10">
+                    <h2 class="arancio">
+                        @Html.DisplayFor(modelItem => item.Prodotto)
+                        <!---Trigger collapse-->
+                        @if (@item.Tdms.Count() != 0)
+                        {
+                            <a class="badge" role="button" data-toggle="collapse" href="#@item.Tdm_Id" aria-expanded="false" aria-controls="@item.Tdm_Id">
+                                <span class="fa fa-chevron-down"> <strong>@item.Tdms.Count()</strong> Servizi attivi</span><br />
+                            </a>
+                        }
+                    </h2>
+                    <!---Collapse servizi-->
+                    <div class="collapse" id="@item.Tdm_Id">
+                        <table class="table table-hover">
+                            @foreach (var item1 in item.Tdms)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(@item1.ProdottoDett, "TdmDett", "Home", new { id = item1.TdmDett_Id }, null)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <h4>@Html.Raw(item.Descrizione)</h4>
+                    <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
+                </div>
+            </div>
+    }
+
+
 </div>

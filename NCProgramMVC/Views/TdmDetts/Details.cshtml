@@ -1,0 +1,44 @@
+﻿@model NCProgramMVC.Models.TdmDett
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>TdmDett</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Prodotto.Prodotto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prodotto.Prodotto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProdottoDett)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProdottoDett)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descrizione)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TdmDett_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
