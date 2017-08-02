@@ -64,16 +64,10 @@ textarea {
     visibility: hidden;
     margin: -10px 0px 0px 10px;
 }
-@media (max-width: 992px) {
-    .img-logo {
-        height: 30px;
-        visibility: visible;
-        margin: 10px 0px 0px 10px;
-    }
-}
-    @media (max-width:768px) {
+    @media (max-width:992px) {
         .img-logo {
-            visibility: hidden;
+            visibility: collapse;
+            width:0px;
         }
 
         .img-logo1 {
@@ -185,46 +179,51 @@ textarea {
             transition: all 0.8s ease;
             font-size: 1.2em;
         }
-
-        .navi li {
-            color: #fff !important;
+        @media (max-width:992px) {
+            .navi a {
+                color: #337ab7 !important;
+            }
         }
 
-            .navi li div {
-                font-size: 1.7em;
-                padding: 12px 13px 0px 13px;
-                z-index: 10;
-                position: relative;
-            }
+    .navi li {
+        color: #fff !important;
+    }
 
-            .navi li a span {
-                transition: all 0.8s ease;
-                color: #000;
-                font-size: 0.1em;
-                overflow: no-content;
-                z-index: 20;
-                -ms-transform: scale(0,0); /* IE 9 */
-                -webkit-transform: scale(0,0); /* Chrome, Safari, Opera */
-                transform: scale(0,0);
-                display: none;
-                background-color: rgba(235, 235, 235, 0.00);
-                bottom: 40px;
-            }
+        .navi li div {
+            font-size: 1.7em;
+            padding: 12px 13px 0px 13px;
+            z-index: 10;
+            position: relative;
+        }
 
-        .navi a:hover span {
-            position: absolute;
-            display: flex;
+        .navi li a span {
             transition: all 0.8s ease;
-            text-shadow: 0px 0px 10px #fff;
-            color: #22486F;
-            -ms-transform: scale(5,5); /* IE 9 */
-            -webkit-transform: scale(5,5); /* Chrome, Safari, Opera */
-            transform: scale(5,5);
-            margin-top: 12px;
-            background-color: rgba(235, 235, 235, 0.80);
-            padding: 0px 1px 1px 1px;
-            border-radius: 1px;
+            color: #000;
+            font-size: 0.1em;
+            overflow: no-content;
+            z-index: 20;
+            -ms-transform: scale(0,0); /* IE 9 */
+            -webkit-transform: scale(0,0); /* Chrome, Safari, Opera */
+            transform: scale(0,0);
+            display: none;
+            background-color: rgba(235, 235, 235, 0.00);
+            bottom: 40px;
         }
+
+    .navi a:hover span {
+        position: absolute;
+        display: flex;
+        transition: all 0.8s ease;
+        text-shadow: 0px 0px 10px #fff;
+        color: #22486F;
+        -ms-transform: scale(5,5); /* IE 9 */
+        -webkit-transform: scale(5,5); /* Chrome, Safari, Opera */
+        transform: scale(5,5);
+        margin-top: 12px;
+        background-color: rgba(235, 235, 235, 0.80);
+        padding: 0px 1px 1px 1px;
+        border-radius: 1px;
+    }
 
     .navi2 {
         margin: 0;
@@ -243,7 +242,7 @@ textarea {
         }
 
             .navi2 li div {
-                padding: 0px 13px 0px 13px;
+                padding: 0px 5px 0px 5px;
                 z-index: 10;
                 position: relative;
             }
@@ -270,7 +269,15 @@ textarea {
 
     .navbar-default {
         height: 80px;
+        border-color: #000;
     }
-    .navbar-default a{
-        bottom: -30px;
+
+        .navbar-default a {
+            bottom: -30px;
+        }
+
+    @media (max-width:992px) {
+        .navbar-collapse {
+            background: #f8f8f8;
+        }
     }

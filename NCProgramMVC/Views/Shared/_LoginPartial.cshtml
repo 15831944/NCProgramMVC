@@ -37,11 +37,14 @@ else
 {
                 <ul class="nav navbar-nav navbar-right navi2 ">
                     <li>
-                        <img class="img-logo" src="~/Content/Immagini/LogoSfumato.png" />
+                        <div class="pull-right">
+
+                            <img class="img-logo" src="~/Content/Immagini/LogoSfumato.png" />
+                        </div>
                     </li>
 
                     <li>
-                        <div >
+                        <div  class="pull-right">
                             @Html.ActionLink(" ", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "fa fa-id-card-o fa-2x", @Title = "Registrati" })
 
                             @Html.ActionLink(" ", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "fa fa-sign-in fa-2x", @title = "Login" })

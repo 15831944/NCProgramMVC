@@ -88,11 +88,12 @@ namespace NCProgramMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> FormServizi(InfoSerViewModels contatti)
+        public async Task<ActionResult> FormServizi(string servizio, InfoSerViewModels contatti)
         {
 
             if (ModelState.IsValid)
             {
+                contatti.Servizio = servizio;
                 MailMessage message = new MailMessage(
                     "webservice@cr-consult.it",
                     "cesare@cr-consult.eu",
@@ -103,6 +104,44 @@ namespace NCProgramMVC.Controllers
                     contatti.Email + "] " +
                     "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it per il servizio <strong><em>" + 
                     contatti.Servizio +
+                    "</strong></em><hr/>Richiesta: <strong>" +
+                    contatti.Messaggio +
+                    "</strong></li>"
+                    );
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                }
+                return RedirectToAction("FormOk", "Home");
+            }
+            return View(contatti);
+        }
+
+        public ActionResult FormProdotti(string prodotto)
+        {
+            ViewBag.Message = "Richiesta info per";
+            ViewBag.Prodotto = prodotto;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> FormProdotti(string prodotto, InfoProViewModels contatti)
+        {
+
+            if (ModelState.IsValid)
+            {
+                contatti.Prodotto = prodotto;
+                MailMessage message = new MailMessage(
+                    "webservice@cr-consult.it",
+                    "cesare@cr-consult.eu",
+                    "Richiesta informazioni dal sito ncprogram.it",
+                    "Il giorno " + DateTime.Now + "<br/><strong>" +
+                    contatti.Nome + " " +
+                    contatti.Cognome + "</strong> [" +
+                    contatti.Email + "] " +
+                    "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it per il prodotto <strong><em>" +
+                    contatti.Prodotto +
                     "</strong></em><hr/>Richiesta: <strong>" +
                     contatti.Messaggio +
                     "</strong></li>"

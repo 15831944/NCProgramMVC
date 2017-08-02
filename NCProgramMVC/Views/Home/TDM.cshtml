@@ -55,7 +55,7 @@
                         </table>
                     </div>
                     <h4>@Html.Raw(item.Descrizione)</h4>
-                    <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
+                    <a href="@Url.Action("FormProdotti", "Home", new { prodotto = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
                 </div>
             </div>
     }

@@ -1,17 +1,18 @@
-﻿@model NCProgramMVC.Models.InfoSerViewModels
+﻿@model NCProgramMVC.Models.InfoProViewModels
 
 @{
-    ViewBag.Title = "Info servizi";
+    ViewBag.Title = "Info prodotti";
 }
 
 <div class="container body-content">
 
-    <h2 class="text-center">@ViewBag.Message <strong><em>@ViewBag.Servizio</em></strong></h2>
+    <h2 class="text-center">@ViewBag.Message <strong><em>@ViewBag.Prodotto</em></strong></h2>
     <hr class="hrl" />
     <div class="row">
         <div class="col-md-12 text-center">
-            @using (Html.BeginForm("FormServizi", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("FormProdotti", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
+
                 <div class="col col-md-8">
                     <form>
                         <div class="form-group">

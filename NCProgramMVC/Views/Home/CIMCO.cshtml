@@ -5,7 +5,13 @@
 }
 <div class="container body-content">
 
-    <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/cimco.png" /></h2>
+    <h2 class="text-center">
+        <img class="img-responsive img-prodotti" src="~/Content/Immagini/cimco.png" />
+
+        <a href="http://www.cimco-software.com" target="_top">
+            <img class="pull-right" border="0" src="http://www.cimco-software.com/banners/cimco_authorized_reseller.gif" alt="CIMCO Integration Authorized Reseller" title="CIMCO Integration Authorized Reseller" />
+        </a>
+    </h2>
     <hr class="hrl" />
 
     <div class="row">
@@ -54,7 +60,7 @@
                     </table>
                 </div>
                 <h4>@Html.Raw(item.Descrizione)</h4>
-                <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
+                <a href="@Url.Action("FormProdotti", "Home", new { prodotto = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
             </div>
         </div>
     }
