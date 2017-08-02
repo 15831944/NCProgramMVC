@@ -23,7 +23,7 @@
                         @if (@item.Servizis.Count() != 0)
                         {
                             <a class="badge" role="button" data-toggle="collapse" href="#@item.Servizio_Id" aria-expanded="false" aria-controls="@item.Servizio_Id">
-                                <span class="fa fa-chevron-down"> <strong>@item.Servizis.Count()</strong> Servizi attivi</span><br />
+                                <span class="fa fa-chevron-down"> Servizi attivi</span><br />
                             </a>
                         }
                 </h2>
@@ -41,7 +41,6 @@
                         </table>
                     </div>
                     <h4>@Html.Raw(item.Descrizione)</h4>
-                    <a href="@Url.Action("FormServizi", "Home", new { servizio = item.Servizio})"><span class="fa fa-pencil-square-o"></span></a>
                 </div>
           </div>
         }

@@ -120,6 +120,7 @@ namespace NCProgramMVC.Models
         public DbSet<CimcoDett> CimcoDetts { get; set; }
         public DbSet<Mazacam> Mazacams { get; set; }
         public DbSet<MazacamDett> MazacamDetts { get; set; }
+        public DbSet<GruppoProdotti> GruppoProdottis { get; set; }
     }
 
 }

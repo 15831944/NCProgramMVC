@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NCProgramMVC.Models.GruppoProdotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container body-content">
+
+    <h2>Index</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prodotto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescrizioneDett)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prodotto)
+                </td>
+                <td>
+                    @Html.Raw(item.Descrizione)
+                </td>
+                <td>
+                    @Html.Raw(item.DescrizioneDett)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.GruppoPodotti_Id }, new { @class = "fa fa-pencil fa-2x" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

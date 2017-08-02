@@ -6,8 +6,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NCProgramMVC.Models
 {
-    public class Prodotti
+    public class GruppoProdotti
     {
+        [Key]
+        public int GruppoPodotti_Id { get; set; }
+        [Display(Name = "Gruppo prodotti")]
+        public string Prodotto { get; set; }
+        [Display(Name = "Descrizione breve")]
+        public string Descrizione { get; set; }
+        [Display(Name = "Descrizione dettagliata")]
+        public string DescrizioneDett { get; set; }
     }
     public class Tdm
     {

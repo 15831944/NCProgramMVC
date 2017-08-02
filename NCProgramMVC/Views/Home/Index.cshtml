@@ -51,49 +51,23 @@
 <!--Fine sezione slide-->
 <div class="container body-content">
     <div class="row">
-        <div class="col-md-4 div-homepage">
-            <h2 >
-                <a href="@Url.Action("Servizi", "Home")"><img src="~/Content/Immagini/Servizi.png" /></a>
-                Servizi
-            </h2>
-            <p class="text-justify">
-                La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici,
-                la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla
-                fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive,
-                orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno.<br />L’attività di
-                programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.
-                @Html.ActionLink(" ", "Servizi", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
-            </p>
-        </div>
-       <div class="col-md-4 div-homepage">
-           <h2>
-               <a href="@Url.Action("Mission", "Home")"><img src="~/Content/Immagini/Mission.png" /></a>
-               Mission
-           </h2>
-            <p class="text-justify">
-                        L’innovazione e la ricerca di soluzioni all’avanguardia, per i settori produttivi della meccanica,
-                        sono da sempre stati gli argomenti prioritari di NC Program. Questa continua ricerca è poi divulgata
-                        alla nostra clientela che può beneficiare delle esperienze raccolte, traendone così vantaggio e acquisendo
-                        nuove tecnologie nell’ambito produttivo.<br/>
-                        Diffondere le nostre esperienze e le nostre conoscenze è sempre stato al centro delle nostre attività.
-                        Le imprese impossibili sono da sempre sinonimo di sfida e in questo NC Program è abituata, per noi le sfide sono la quotidianità.
-                        @Html.ActionLink(" ", "Mission", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
-                    </p>
-         </div>
-        <div class="col-md-4 div-homepage">
-            <h2 >
-                <a href="@Url.Action("Storia", "Home")"><img src="~/Content/Immagini/Storia.png" /></a>
-                Storia
-            </h2>
-            <p class="text-justify">
-                NC Program nasce nel 1996 con l’attività di Programmazione NC e Corsi di Uso e Programmazione NC.
-                L’esperienza nelle lavorazioni meccaniche, ha fatto sì che venissero sempre di più maturate esperienze nel
-                campo dell’utensileria meccanica, portandoci a studiare utensili speciali per la riduzioni di tempi di lavorazione.<br/>
-                Successivamente NC Program si è accorta che era necessario un software in grado di gestire gli assiemi utensili.
-                Da questo argomento nel 2005 si è deciso di adottare il software TDM di TDM Systems, membro di Sandvik Group e da subito NC Program.
-                @Html.ActionLink(" ", "Storia", "Home", new { @class = "btn btn-default btn-xs glyphicon glyphicon-chevron-right arancio" })
-            </p>
-        </div>
+        @foreach (var item in ViewBag.Servizi)
+        {
+            <div class="col-md-4 div-homepage">
+                <h2>
+                    <a href="@Url.Action(@item.Prodotto, "Home")"><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" /></a>
+                    @if (User.IsInRole("Admin"))
+                            {
+                            <a href="@Url.Action("Edit", "GruppoProdottis", new { id = @item.GruppoPodotti_Id })"><span class="fa fa-pencil "></span></a>
+                        }
+                    @item.Prodotto
+                </h2>
+                <p class="text-justify">
+                    @Html.Raw(item.Descrizione)
+                    <a href="@Url.Action(@item.Prodotto, "Home")"><span class="fa fa-chevron-circle-right arancio"></span></a>
+                </p>
+            </div>
+        }
     </div>
 </div>
 

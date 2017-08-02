@@ -6,22 +6,26 @@
 }
 <div class="container body-content">
 
-    <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/mazacam.png" /></h2>
-    <hr class="hrl" />
-    <div class="row">
-        <div class="col col-md-6">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A3a-jyhMmUY"></iframe>
+    @foreach (var itemGr in ViewBag.GruppoProdotti)
+    {
+        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )" /></h2>
+        if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("Edit", "GruppoProdottis", new { id = itemGr.GruppoPodotti_Id})"><span class="fa fa-pencil fa-2x"></span></a>
+        }
+        <hr class="hrl" />
+        <p>
+            @Html.Raw(itemGr.Descrizione)
+            <a role="button" data-toggle="collapse" href="#@itemGr.GruppoPodotti_Id" aria-expanded="false" aria-controls="@itemGr.GruppoPodotti_Id">
+                <span class="fa fa-arrow-circle-down"></span>
+            </a>
+        </p>
+        <div class="collapse" id="@itemGr.GruppoPodotti_Id">
+            <div class="well">
+                @Html.Raw(itemGr.DescrizioneDett)
             </div>
         </div>
-        <div class="col col-md-6 text-center">
-            <div class="text-justify">
-                <h3>About MazaCAM</h3>
-                So, what is MazaCAM? MazaCAM is an advanced off-line programming system for the Mazak CNC machine tools.<br/>
-                But what does that mean exactly? It means that in addition to the conventional method of programming a Mazak (on the control), you can program your Mazaks completely off-line in your office, or even on the road. This in itself is only a small fraction of the capabilities and features of MazaCAM, these are some of the reasons why MazaCAM is an advanced off-line programming system.
-            </div>
-        </div>
-    </div>
+    }
 
     @foreach (var item in Model)
     {
@@ -37,7 +41,7 @@
                     @if (@item.Mazacams.Count() != 0)
                     {
                         <a class="badge" role="button" data-toggle="collapse" href="#@item.Mazacam_Id" aria-expanded="false" aria-controls="@item.Mazacam_Id">
-                            <span class="fa fa-chevron-down"> <strong>@item.Mazacams.Count()</strong> Servizi attivi</span><br />
+                            <span class="fa fa-chevron-down"> Servizi attivi</span><br />
                         </a>
                     }
                 </h2>
@@ -55,7 +59,6 @@
                     </table>
                 </div>
                 <h4>@Html.Raw(item.Descrizione)</h4>
-                <a href="@Url.Action("FormProdotti", "Home", new { prodotto = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
             </div>
         </div>
     }

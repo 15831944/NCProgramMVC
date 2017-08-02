@@ -18,6 +18,8 @@ namespace NCProgramMVC.Controllers
         {
             var slides = db.Slides.Where(s=>s.Pubblica == true).OrderBy(s => s.Posizione).ToList();
             ViewBag.SlidesCount = slides.Count();
+            var servizi = db.GruppoProdottis.Where(g => g.Prodotto == "Servizi" | g.Prodotto == "Mission" | g.Prodotto == "Storia").ToList();
+            ViewBag.Servizi = servizi;
             return View(slides);
         }
 
@@ -164,11 +166,13 @@ namespace NCProgramMVC.Controllers
 
         public ActionResult Mission()
         {
-            return View();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "Mission").ToList();
+            return View(gruppoProdotti);
         }
         public ActionResult Storia()
         {
-            return View();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "Storia").ToList();
+            return View(gruppoProdotti);
         }
         public ActionResult Servizi()
         {
@@ -207,6 +211,8 @@ namespace NCProgramMVC.Controllers
         public ActionResult TDM()
         {
             var prodotti = db.Tdms.OrderBy(s => s.Prodotto).ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "TDM").ToList();
+            ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
 
@@ -227,6 +233,8 @@ namespace NCProgramMVC.Controllers
         public ActionResult CIMCO()
         {
             var prodotti = db.Cimcoes.OrderBy(s => s.Prodotto).ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "CIMCO").ToList();
+            ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
 
@@ -247,6 +255,8 @@ namespace NCProgramMVC.Controllers
         public ActionResult Mazac()
         {
             var prodotti = db.Mazacams.OrderBy(s => s.Prodotto).ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "MAZACAM").ToList();
+            ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
 

@@ -1,42 +1,16 @@
-﻿
+﻿@model IEnumerable<NCProgramMVC.Models.GruppoProdotti>
+
 @{
     ViewBag.Title = "Mission";
 }
 <div class="container body-content">
+    @foreach (var item in Model)
+    {
+        <h2 class="text-center"><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />Mission</h2>
 
-    <h2><img src="~/Content/Immagini/Mission.png" />Mission</h2>
-    <hr class="hrl" />
+        <hr class="hrl" />
+        <div>@Html.Raw(@item.DescrizioneDett)</div>
+    }
+
     
-    <p>        L’innovazione e la ricerca di soluzioni all’avanguardia, per i settori produttivi della meccanica, sono da sempre stati gli argomenti prioritari di NC Program. Questa continua ricerca è poi divulgata alla nostra clientela che può beneficiare delle esperienze raccolte, traendone così vantaggio e acquisendo nuove tecnologie nell’ambito produttivo.
-
-        Diffondere le nostre esperienze e le nostre conoscenze è sempre stato al centro delle nostre attività.<br/>
-
-        Le imprese impossibili sono da sempre sinonimo di sfida e in questo NC Program è abituata, per noi le sfide sono la quotidianità.
-
-
-
-        La mission di NC Program può dirsi articolata in differenti settori:<br/>
-
-    <ul>
-        <li>
-            Programmazione macchine CNC
-
-        </li>
-        <li>
-            Progettazione attrezzature meccaniche di bloccaggio
-
-        </li>
-        <li>
-            Formazione personale sulla conduzione e programmazione delle macchine utensili
-
-        </li>
-        <li>
-            Proposte software per la gestione dell’officina
-
-        </li>
-    </ul>
-
-        Il nostro slogan principale: l’asportazione truciolo è la nostra arte, la formazione del personale è il nostro credo e il nostro software è il braccio per aiutare il cliente ad aumentare l’efficienza.
-</p>
-    <img class="img-thumbnail" src="~/Content/Immagini/Mission.jpg" />
 </div>

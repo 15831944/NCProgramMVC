@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Prodotti>
+  <Prodotto>
+    <Prodotto_Id>1</Prodotto_Id>
+    <NomeProdotto>TDM System</NomeProdotto>
+    <DescrizioneProdotto>
+      azienda di Tübingen operante nell’ambito software, è lo specialista leader nel Tool Lifecycle Management.
+      Ormai da quasi 30 anni, TDM Systems offre alle industrie di asportazione truciolo soluzioni per ottimizzare i processi, grazie ad una pianificazione e ad un’erogazione ottimali dei loro utensili. In tale modo, il software TDM colma il gap, spesso notevole, fra pianificazione e produzione.
+      Il suo database centralizzato integra tutti i sistemi, tutte le macchine e tutte le persone coinvolti nel processo di produzione: dall’ordine alla progettazione del pezzo in lavorazione, dalla pianificazione NC alla simulazione, fino alla preparazione degli ordini e all’organizzazione fisica del ciclo utensili a livello shopfloor.
+      TDM Systems è una società controllata al 100% dal Gruppo SANDVIK. Dal suo Competence Center, l’azienda si mantiene in stretto contatto con diversi player internazionali della costruzione utensili, potendo così sviluppare al meglio i propri prodotti software per i requisiti del settore, soprattutto nell’ottica dell’Industria 4.0.
+    </DescrizioneProdotto>
+  </Prodotto>
+</Prodotti>

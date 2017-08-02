@@ -171,6 +171,7 @@
     <Compile Include="Controllers\CimcoDettsController.cs" />
     <Compile Include="Controllers\CimcoesController.cs" />
     <Compile Include="Controllers\DocumentisController.cs" />
+    <Compile Include="Controllers\GruppoProdottisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MazacamDettsController.cs" />
@@ -204,6 +205,14 @@
     <Compile Include="Migrations\201707291038519_prodotti.cs" />
     <Compile Include="Migrations\201707291038519_prodotti.Designer.cs">
       <DependentUpon>201707291038519_prodotti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708021317457_gruppoprodotti.cs" />
+    <Compile Include="Migrations\201708021317457_gruppoprodotti.Designer.cs">
+      <DependentUpon>201708021317457_gruppoprodotti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708021328115_gruppoprodotti1.cs" />
+    <Compile Include="Migrations\201708021328115_gruppoprodotti1.Designer.cs">
+      <DependentUpon>201708021328115_gruppoprodotti1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -951,6 +960,11 @@
     <Content Include="Views\Home\CimcoDett.cshtml" />
     <Content Include="Views\Home\MazacDett.cshtml" />
     <Content Include="Views\Home\FormProdotti.cshtml" />
+    <Content Include="Views\GruppoProdottis\Create.cshtml" />
+    <Content Include="Views\GruppoProdottis\Delete.cshtml" />
+    <Content Include="Views\GruppoProdottis\Details.cshtml" />
+    <Content Include="Views\GruppoProdottis\Edit.cshtml" />
+    <Content Include="Views\GruppoProdottis\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Documenti\" />
@@ -979,6 +993,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707291038519_prodotti.resx">
       <DependentUpon>201707291038519_prodotti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708021317457_gruppoprodotti.resx">
+      <DependentUpon>201708021317457_gruppoprodotti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708021328115_gruppoprodotti1.resx">
+      <DependentUpon>201708021328115_gruppoprodotti1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

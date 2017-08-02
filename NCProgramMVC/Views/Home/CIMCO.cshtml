@@ -4,29 +4,26 @@
     ViewBag.Title = "CIMCO";
 }
 <div class="container body-content">
-
-    <h2 class="text-center">
-        <img class="img-responsive img-prodotti" src="~/Content/Immagini/cimco.png" />
-
-        <a href="http://www.cimco-software.com" target="_top">
-            <img class="pull-right" border="0" src="http://www.cimco-software.com/banners/cimco_authorized_reseller.gif" alt="CIMCO Integration Authorized Reseller" title="CIMCO Integration Authorized Reseller" />
-        </a>
-    </h2>
-    <hr class="hrl" />
-
-    <div class="row">
-        <div class="col col-md-6">
-            <img class="img-responsive" src="~/Content/Immagini/cimcosede.jpg" />
-        </div>
-        <div class="col col-md-6 text-center">
-            <div class="text-justify">
-                <h3>At CIMCO</h3> we develop and market software and solutions for Computer Integrated Manufacturing.<br/>
-                Our product line includes advanced CNC-Editors, DNC software for reliable CNC communication, Manufacturing Data Collection for real-time monitoring and analysis of shop floor productivity, and Production Data Management for managing, controlling and securely storing all production related data.<br/>
-                By delivering reliable and professional software solutions through our global network of CAD/CAM/CNC resellers and consultants we have sold more than 100,000 licenses globally. Since 1991, CIMCO resellers have helped companies worldwide improve their competitive edge with our software and we hold great pride in continuously supporting and meeting our customers’ demands by developing intelligent and competitive solutions.<br/>
-                CIMCO headquarters and main training facility are located in the Danish capital Copenhagen. This is the base of operation for the sales and support team. Our technical service staff travels worldwide and has local offices in select countries.
+    @foreach (var itemGr in ViewBag.GruppoProdotti)
+    {
+        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )" /></h2>
+        if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("Edit", "GruppoProdottis", new { id = itemGr.GruppoPodotti_Id})"><span class="fa fa-pencil fa-2x"></span></a>
+        }
+        <hr class="hrl" />
+        <p>
+            @Html.Raw(itemGr.Descrizione)
+            <a role="button" data-toggle="collapse" href="#@itemGr.GruppoPodotti_Id" aria-expanded="false" aria-controls="@itemGr.GruppoPodotti_Id">
+                <span class="fa fa-arrow-circle-down"></span>
+            </a>
+        </p>
+        <div class="collapse" id="@itemGr.GruppoPodotti_Id">
+            <div class="well">
+                @Html.Raw(itemGr.DescrizioneDett)
             </div>
         </div>
-    </div>
+    }
 
     @foreach (var item in Model)
     {
@@ -42,7 +39,7 @@
                     @if (@item.Cimcos.Count() != 0)
                     {
                         <a class="badge" role="button" data-toggle="collapse" href="#@item.Cimco_Id" aria-expanded="false" aria-controls="@item.Cimco_Id">
-                            <span class="fa fa-chevron-down"> <strong>@item.Cimcos.Count()</strong> Servizi attivi</span><br />
+                            <span class="fa fa-chevron-down"> Servizi attivi</span><br />
                         </a>
                     }
                 </h2>
@@ -60,7 +57,6 @@
                     </table>
                 </div>
                 <h4>@Html.Raw(item.Descrizione)</h4>
-                <a href="@Url.Action("FormProdotti", "Home", new { prodotto = item.Prodotto})"><span class="fa fa-pencil-square-o"></span></a>
             </div>
         </div>
     }
