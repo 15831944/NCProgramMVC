@@ -22,6 +22,9 @@ namespace NCProgramMVC.Models
         public string Tel { get; set; }
         [Display(Name = "Messaggio")]
         public string Messaggio { get; set; }
+        [Required]
+        public bool Privacy { get; set; }
+        public string Prodotto { get; set; }
     }
     public class InfoSerViewModels
     {

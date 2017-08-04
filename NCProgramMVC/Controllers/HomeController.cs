@@ -42,15 +42,16 @@ namespace NCProgramMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contatti di riferimento";
-
+            ViewBag.Message = "";
+            var prodotti = db.GruppoProdottis.ToList();
+            ViewBag.Prodotti = prodotti;
             return View();
         }
 
@@ -60,15 +61,25 @@ namespace NCProgramMVC.Controllers
 
             if (ModelState.IsValid)
             {
+                if(contatti.Privacy == false)
+                {
+                    ViewBag.Message = "Conferma la lettura del documento della privacy";
+                    return View(contatti);
+                }
+                else
+                {
+                ViewBag.Message = "";
                 MailMessage message = new MailMessage(
-                    "webservice@cr-consult.it",
+                    "webservice@ncprogram.it",
                     "cesare@cr-consult.eu,giuseppe.ferrari@ncprogram.it",
                     "Richiesta informazioni dal sito ncprogram.it",
                     "Il giorno " + DateTime.Now + "<br/><strong>" +
                     contatti.Nome + " " +
                     contatti.Cognome + "</strong> [" +
                     contatti.Email + "] " +
-                    "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it<hr/>Richiesta: <strong>" +
+                    "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it<hr/>Prodotto: <strong>" +
+                    contatti.Prodotto + 
+                    "</strong><br/>Richiesta:<strong>" +
                     contatti.Messaggio +
                     "</strong></li>"
                     );
@@ -78,6 +89,8 @@ namespace NCProgramMVC.Controllers
                     await smtp.SendMailAsync(message);
                 }
                 return RedirectToAction("FormOk", "Home");
+
+                }
             }
             return View(contatti);
         }
@@ -272,6 +285,16 @@ namespace NCProgramMVC.Controllers
                 return HttpNotFound();
             }
             return View(servizi);
+        }
+
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        public ActionResult InfoCookie()
+        {
+            return View();
         }
 
 

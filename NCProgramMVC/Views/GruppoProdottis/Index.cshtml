@@ -15,9 +15,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Descrizione)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescrizioneDett)
-            </th>
             <th></th>
         </tr>
 
@@ -29,9 +26,6 @@
                 </td>
                 <td>
                     @Html.Raw(item.Descrizione)
-                </td>
-                <td>
-                    @Html.Raw(item.DescrizioneDett)
                 </td>
                 <td>
                     @Html.ActionLink(" ", "Edit", new { id = item.GruppoPodotti_Id }, new { @class = "fa fa-pencil fa-2x" })

@@ -6,7 +6,7 @@
 <div class="container body-content">
     @foreach (var item in Model)
     {
-        <h2 class="text-center"><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />Mission</h2>
+        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />Mission</h2>
 
         <hr class="hrl" />
         <div>@Html.Raw(@item.DescrizioneDett)</div>

@@ -233,29 +233,17 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Immagini\cimco.png" />
-    <Content Include="Content\Immagini\cimco1.gif" />
-    <Content Include="Content\Immagini\cimco2.gif" />
-    <Content Include="Content\Immagini\cimco3.gif" />
-    <Content Include="Content\Immagini\cimco4.gif" />
-    <Content Include="Content\Immagini\cimco5.gif" />
-    <Content Include="Content\Immagini\cimco6.gif" />
-    <Content Include="Content\Immagini\cimco7c.gif" />
-    <Content Include="Content\Immagini\cimco8.png" />
-    <Content Include="Content\Immagini\cimco9.gif" />
-    <Content Include="Content\Immagini\cimcosede.jpg" />
     <Content Include="Content\Immagini\Cimco\1.png" />
-    <Content Include="Content\Immagini\demo2.jpg" />
-    <Content Include="Content\Immagini\demo3.jpg" />
+    <Content Include="Content\Immagini\download.png" />
     <Content Include="Content\Immagini\LogoSfumato.png" />
     <Content Include="Content\Immagini\Mazacam.png" />
     <Content Include="Content\Immagini\Mazacam\1.png" />
+    <Content Include="Content\Immagini\MazaCam_C.png" />
     <Content Include="Content\Immagini\Mission.png" />
-    <Content Include="Content\Immagini\demo1.jpg" />
     <Content Include="Content\Immagini\Due.jpg" />
     <Content Include="Content\Immagini\FotoIscritti\anonimous.jpg" />
     <Content Include="Content\Immagini\FotoIscritti\b5c4d630-583d-4ef2-8994-70abb4bc2124.jpg" />
     <Content Include="Content\Immagini\Logo.png" />
-    <Content Include="Content\Immagini\LogoAC.jpg" />
     <Content Include="Content\Immagini\Mission.jpg" />
     <Content Include="Content\Immagini\NCServizi.png" />
     <Content Include="Content\Immagini\Servizi\1.png" />
@@ -277,6 +265,7 @@
     <Content Include="Content\Immagini\tdm2.png" />
     <Content Include="Content\Immagini\tdm3.png" />
     <Content Include="Content\Immagini\Tdm\1.png" />
+    <Content Include="Content\Immagini\TDM_C.png" />
     <Content Include="Content\Immagini\Tre.jpg" />
     <Content Include="Content\Immagini\Uno.jpg" />
     <Content Include="Content\Immagini\work.jpg.png" />
@@ -829,6 +818,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.filtertable.js" />
     <Content Include="Scripts\jquery.filtertable.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -965,6 +955,8 @@
     <Content Include="Views\GruppoProdottis\Details.cshtml" />
     <Content Include="Views\GruppoProdottis\Edit.cshtml" />
     <Content Include="Views\GruppoProdottis\Index.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\InfoCookie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Documenti\" />

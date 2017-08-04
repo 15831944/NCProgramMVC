@@ -44,13 +44,14 @@
             <div class="blu">
                 <div class="col col-md-6">
                     <div class="pull-left">
-                        &copy; @DateTime.Now.Year - NCProgram Web App
+                        <span>&copy; @DateTime.Now.Year - NCProgram Web App</span>
+                        <p>@Html.ActionLink(" Privacy police", "Privacy", "Home", null, new { @class = "fa fa-book" })</p>
 
                     </div>
                 </div>
                 <div class="col col-md-6">
                     <span>
-                        @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "fa fa-pencil-square-o fa-3x blu", title = "Contatti" })
+                        @Html.ActionLink(" ", "Contact", "Home", null, new { @class = "fa fa-pencil-square-o fa-3x", title = "Contatti" })
                     </span>
                </div>
             </div>
@@ -80,10 +81,51 @@
         </div>
     }
     @*Fine barra barra amministratore bottom - gestione utenti ruoli*@
+    @*Inizio alert utilizzo coockie*@
+    @{
+        if (HttpContext.Current.Request.Cookies.Get("ncprogram") != null)
+        {
+            if (HttpContext.Current.Request.Cookies.Get("ncprogram").Value != "privacyOK")
+            {
+                <div class="divCook">
+                    <p>
+                        Questo sito utilizza cookie di profilazione, propri o di altri. Se accedi a un qualunque elemento del sito acconsenti all'uso del cookie.
+                    </p>
+                    <a href="@Url.Action("InfoCookie", "Home")" class="btn btn-xs btn-warning">Informazioni</a>
+                    <button id="btnCook" type="button" class="btn btn-xs btn-primary">Acconsenti</button>
+                    <h4></h4>
 
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="divCook">
+                <p>
+                    Questo sito utilizza cookie di profilazione, propri o di altri. Se accedi a un qualunque elemento del sito acconsenti all'uso del cookie.
+                </p>
+                <a href="@Url.Action("InfoCookie", "Home")" class="btn btn-xs btn-warning">Informazioni</a>
+                <button id="btnCook" type="button" class="btn btn-xs btn-primary">Acconsenti</button>
+                <h4></h4>
+
+            </div>
+        }
+    }
+    @*Fine alert utilizzo coockie*@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+        @Scripts.Render("~/Scripts/jquery.cookie.js")
+    <script type="text/javascript">
+        $('#btnCook').click(function () {
+            $.cookie('ncprogram', 'privacyOK', { expires: 2 });
+            var valore = $.cookie('ncprogram');
+            $('.divCook').hide();
+        });
+    </script>
+
+
 </body>
 </html>

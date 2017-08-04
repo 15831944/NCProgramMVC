@@ -7,7 +7,9 @@
 
     @foreach (var itemGr in ViewBag.GruppoProdotti)
     {
-        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )"/></h2>
+        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )"/>
+    </h2>
+        <a class="row" href="http://www.tdmsystems.com"><img class="img-partner pull-right" src="~/Content/Immagini/TDM_C.png" /></a>
         if (User.IsInRole("Admin"))
         {
             <a href="@Url.Action("Edit", "GruppoProdottis", new { id = itemGr.GruppoPodotti_Id})"><span class="fa fa-pencil fa-2x"></span></a>
