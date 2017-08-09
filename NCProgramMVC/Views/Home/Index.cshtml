@@ -27,9 +27,9 @@
                     <div class="item @active">
                         <img src="@Url.Content("~/Content/Immagini/Slides/" + @item.Sfondo)" alt="...">
                         <div class="carousel-caption">
-                            <h4>@item.Titolo</h4>
-                            <h3>Sottotitolo</h3>
-                            <h3>@Html.Raw(@item.Descrizione)</h3>
+                            <div>@Html.Raw(@item.Titolo)</div>
+                            <div>@Html.Raw(@item.Sottotitolo)</div>
+                            <div>@Html.Raw(@item.Descrizione)</div>
                         </div>
                     </div>
                 }
@@ -55,12 +55,11 @@
         {
             <div class="col-md-4 div-homepage">
                 <h2>
-                    <a href="@Url.Action(@item.Prodotto, "Home")"><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" /></a>
+                    <a href="@Url.Action(@item.Prodotto, "Home")"><span><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />@item.Prodotto</span></a>
                     @if (User.IsInRole("Admin"))
-                            {
-                            <a href="@Url.Action("Edit", "GruppoProdottis", new { id = @item.GruppoPodotti_Id })"><span class="fa fa-pencil "></span></a>
-                        }
-                    @item.Prodotto
+                    {
+                        <a href="@Url.Action("Edit", "GruppoProdottis", new { id = @item.GruppoPodotti_Id })"><span class="fa fa-pencil "></span></a>
+                    }
                 </h2>
                 <p class="text-justify">
                     @Html.Raw(item.Descrizione)

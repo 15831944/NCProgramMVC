@@ -37,7 +37,13 @@ textarea {
 .blu {
     color: #375380 !important;
 }
-
+.a-ncp{
+    border:none;
+}
+.a-ncp :hover{
+    border:2px;
+    border-color:#ef7a1b;
+}
 .hrl {
     border: 0;
     height: 1px;
@@ -271,6 +277,7 @@ textarea {
             border-radius: 1px;
         }
 
+@media (min-width:992px) {
     .navbar-default {
         height: 80px;
         border-color: #000;
@@ -280,6 +287,8 @@ textarea {
             bottom: -30px;
         }
 
+}
+
     @media (max-width:992px) {
         .navbar-collapse {
             background: #f8f8f8;
@@ -287,51 +296,51 @@ textarea {
     }
 
 
-/*Consenso utilizzo coockie*/
-.divCook {
-    border-width: 0.7px;
-    border-color: rgba(248, 246, 246, 0.88);
-    width: 200px;
-    border-radius: 0px 0px 15px 15px;
-    text-align: justify;
-    background-color: rgba(5, 5, 5, 0.8);
-    padding: 5px;
-    color: #fff;
-    position: fixed;
-    -webkit-animation-name: cook; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
-    animation-name: cook;
-    animation-duration: 3s;
-    animation-direction: normal;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    top: 10px;
-    left: 10px;
-    z-index: 99999;
-}
-/* Chrome, Safari, Opera */
-@-webkit-keyframes cook {
-    0% {
-        left: 50%;
-        top: 50%;
-    }
-
-    100% {
-        left: 10px;
+    /*Consenso utilizzo coockie*/
+    .divCook {
+        border-width: 0.7px;
+        border-color: rgba(248, 246, 246, 0.88);
+        width: 200px;
+        border-radius: 0px 0px 15px 15px;
+        text-align: justify;
+        background-color: rgba(5, 5, 5, 0.8);
+        padding: 5px;
+        color: #fff;
+        position: fixed;
+        -webkit-animation-name: cook; /* Chrome, Safari, Opera */
+        -webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
+        animation-name: cook;
+        animation-duration: 3s;
+        animation-direction: normal;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-left-style: solid;
         top: 10px;
-    }
-}
-
-/* Standard syntax */
-@keyframes cook {
-    0% {
-        left: 50%;
-        top: 50%;
-    }
-
-    100% {
         left: 10px;
-        top: 10px;
+        z-index: 99999;
     }
-}    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes cook {
+        0% {
+            left: 50%;
+            top: 50%;
+        }
+
+        100% {
+            left: 10px;
+            top: 10px;
+        }
+    }
+
+    /* Standard syntax */
+    @keyframes cook {
+        0% {
+            left: 50%;
+            top: 50%;
+        }
+
+        100% {
+            left: 10px;
+            top: 10px;
+        }
+    }    

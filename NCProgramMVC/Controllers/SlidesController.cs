@@ -143,9 +143,11 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Slide_Id,Titolo,Sottotitolo,Sfondo,Posizione,Pubblica", Exclude = "Descrizione")] Slide slide, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "Slide_Id,Sfondo,Posizione,Pubblica", Exclude = "Titolo,Sottotitolo,Descrizione")] Slide slide, HttpPostedFileBase file)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
+            slide.Titolo = collection["Titolo"];
+            slide.Sottotitolo = collection["Sottotitolo"];
             slide.Descrizione = collection["Descrizione"];
             if (ModelState.IsValid)
             {
