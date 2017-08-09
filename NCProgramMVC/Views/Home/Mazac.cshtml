@@ -5,7 +5,7 @@
     ViewBag.Title = "Mazac";
 }
 <div class="container body-content">
-
+    <!--- Intestazione della pagina: prevede l'immagine di testa e la descrizione del gruppodi prodotti -->
     @foreach (var itemGr in ViewBag.GruppoProdotti)
     {
         <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )" /></h2>
@@ -27,6 +27,8 @@
             </div>
         </div>
     }
+    <!---Fine intestazione della pagine -->
+    <!---Elenco i prodotti di MAZACAM. Nella sezione collapse elenco i dettagli dei prodotti-->
 
     @foreach (var item in Model)
     {
@@ -49,7 +51,7 @@
                 <!---Collapse servizi-->
                 <div class="collapse" id="@item.Mazacam_Id">
                     <table class="table table-hover">
-                        @foreach (var item1 in item.Mazacams)
+                        @foreach (var item1 in item.Mazacams.OrderBy(p => p.ProdottoDett))
                         {
                             <tr>
                                 <td>

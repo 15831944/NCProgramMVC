@@ -224,7 +224,7 @@ namespace NCProgramMVC.Controllers
         public ActionResult TDM()
         {
             var prodotti = db.Tdms.OrderBy(s => s.Prodotto).ToList();
-            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "TDM").ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "TDM").OrderBy(p=>p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
@@ -246,7 +246,7 @@ namespace NCProgramMVC.Controllers
         public ActionResult CIMCO()
         {
             var prodotti = db.Cimcoes.OrderBy(s => s.Prodotto).ToList();
-            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "CIMCO").ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "CIMCO").OrderBy(p => p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
@@ -268,7 +268,7 @@ namespace NCProgramMVC.Controllers
         public ActionResult Mazac()
         {
             var prodotti = db.Mazacams.OrderBy(s => s.Prodotto).ToList();
-            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "MAZACAM").ToList();
+            var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "MAZACAM").OrderBy(p => p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
