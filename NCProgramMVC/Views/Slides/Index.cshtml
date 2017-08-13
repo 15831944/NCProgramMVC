@@ -11,54 +11,77 @@
     <p>
         <a href="@Url.Action("Create", "Slides")" class="btn btn-primary"><span class="badge">@ViewBag.SlideCount</span> Nuovo</a>
     </p>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Titolo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sottotitolo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sfondo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Posizione)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Pubblica)
-                </th>
-                <th></th>
-            </tr>
+       <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sfondo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titolo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sottotitolo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pubblica)
+                    </th>
+                    <th></th>
+                </tr>
 
-        </thead>
+            </thead>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.Raw(item.Titolo)
-                </td>
-                <td>
-                    @Html.Raw(item.Sottotitolo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sfondo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Posizione)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pubblica)
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.Slide_Id }, new { @class = "fa fa-pencil-square-o fa-2x text-success", @title = "Modifica" })
-                    @Html.ActionLink(" ", "Details", new { id = item.Slide_Id }, new { @class = "fa fa-list-alt fa-2x", @title = "Dettagli" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.Slide_Id }, new { @class = "fa fa-trash-o fa-2x text-danger", @title = "Cancella" })
-                </td>
-            </tr>
-        }
+            <tbody id="sortable">
+                @foreach (var item in Model.Select((value, i) => new { i, value }))
+                {
+                     var sortId = @item.value.Slide_Id + "_" + @item.i;
+                    <tr id="@sortId" >
+                        <td>
+                            <img class="img-prodotti-sm" src="@Url.Content("~/Content/Immagini/Slides/" + @Html.DisplayFor(modelItem => item.value.Sfondo))" />
+                            
+                        </td>
+                        <td>
+                            @Html.Raw(item.value.Titolo)
+                        </td>
+                        <td>
+                            @Html.Raw(item.value.Sottotitolo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.value.Pubblica)
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "Edit", new { id = item.value.Slide_Id }, new { @class = "fa fa-pencil-square-o fa-2x text-success", @title = "Modifica" })
+                            @Html.ActionLink(" ", "Details", new { id = item.value.Slide_Id }, new { @class = "fa fa-list-alt fa-2x", @title = "Dettagli" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.value.Slide_Id }, new { @class = "fa fa-trash-o fa-2x text-danger", @title = "Cancella" })
+                        </td>
+                    </tr>
+                }
 
-    </table>
+            </tbody>
+        </table>
+
 </div>
+@section Scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $('#sortable').sortable({
+                axis: 'y',
+                update: function (event, ui) {
+                    var sorted = $('#sortable').sortable('toArray');
+                    $.ajax({
+                        type: 'POST',
+                        contentType: "application/json8",
+                        data: JSON.stringify({ items: sorted }),
+                        url: '@Url.Action("SortSlides", "Slides")',
+                    });
+                }
+            });
+            $("#sortable").disableSelection({});
+        });
+    </script>
+}

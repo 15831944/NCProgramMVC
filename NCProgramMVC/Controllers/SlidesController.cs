@@ -25,6 +25,26 @@ namespace NCProgramMVC.Controllers
             return View(slide);
         }
 
+        [HttpPost]
+        public ActionResult SortSlides( string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.Slides.Where(s => s.Slide_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return View();
+        }
+
         // GET: Slides/Details/5
         public ActionResult Details(int? id)
         {

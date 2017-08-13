@@ -58,6 +58,10 @@ textarea {
 .img-prodotti{
     display: inline;
 }
+
+.img-prodotti-sm{
+    height:70px;
+}
 .img-partner {
     height: 50px;
 }

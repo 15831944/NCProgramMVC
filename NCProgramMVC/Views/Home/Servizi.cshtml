@@ -7,7 +7,16 @@
 
     <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/NCServizi.png" /></h2>
     <hr class="hrl" />
-   
+    
+    <ul id="sortable">
+        @foreach (var myItem in Model.Select((value, i) => new { i, value }))
+        {
+            <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Indice: @myItem.i  Valore: @myItem.value.Servizio
+
+            </li>
+        }
+    </ul>
 <p>La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici, la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive, orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno. L’attività di programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.</p>
         @foreach (var item in Model)
         {
@@ -30,11 +39,12 @@
                     <!---Collapse servizi-->
                     <div class="collapse" id="@item.Servizio_Id">
                         <table class="table table-hover">
-                            @foreach (var item1 in item.Servizis)
+                            @foreach (var item1 in item.Servizis.Select((value, i) => new { i, value }))
                             {
                                 <tr>
                                     <td>
-                                        @Html.ActionLink(@item1.ServizioDett, "ServiziDett", "Home", new { id = item1.ServizoDett_Id }, null)
+                                        <span>Indice: @item1.i</span>
+                                        @Html.ActionLink(@item1.value.ServizioDett, "ServiziDett", "Home", new { id = item1.value.ServizoDett_Id }, null)
                                     </td>
                                 </tr>
                             }
@@ -48,3 +58,18 @@
 
 
 </div>
+
+@section Scripts{
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+        $(function () {
+            $("#sortable").sortable({
+                update: function (event, ui) { }});
+            $("#sortable").disableSelection();
+        });
+</script>
+}
