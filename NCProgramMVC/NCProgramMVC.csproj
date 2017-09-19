@@ -220,6 +220,14 @@
     <Compile Include="Migrations\201708021328115_gruppoprodotti1.Designer.cs">
       <DependentUpon>201708021328115_gruppoprodotti1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708140742230_serviziposizione.cs" />
+    <Compile Include="Migrations\201708140742230_serviziposizione.Designer.cs">
+      <DependentUpon>201708140742230_serviziposizione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709011536024_posizioneprodotti.cs" />
+    <Compile Include="Migrations\201709011536024_posizioneprodotti.Designer.cs">
+      <DependentUpon>201709011536024_posizioneprodotti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
@@ -908,6 +916,10 @@
     <Content Include="Views\GruppoProdottis\Index.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Home\InfoCookie.cshtml" />
+    <Content Include="Views\ServiziDetts\EditOrder.cshtml" />
+    <Content Include="Views\TdmDetts\EditOrder.cshtml" />
+    <Content Include="Views\MazacamDetts\EditOrder.cshtml" />
+    <Content Include="Views\CimcoDetts\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Documenti\" />
@@ -942,6 +954,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708021328115_gruppoprodotti1.resx">
       <DependentUpon>201708021328115_gruppoprodotti1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708140742230_serviziposizione.resx">
+      <DependentUpon>201708140742230_serviziposizione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709011536024_posizioneprodotti.resx">
+      <DependentUpon>201709011536024_posizioneprodotti.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

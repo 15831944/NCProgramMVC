@@ -18,6 +18,7 @@
             <tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Img</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Prodotto)
@@ -28,55 +29,89 @@
             </tr>
 
         </thead>
+        <tbody id="sortable">
+@foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                var sortId = @item.value.Tdm_Id + "_" + @item.i;
+    <tr id="@sortId">
+        <td>
+            <span class="fa fa-arrows-v fa-2x"></span>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#@item.Tdm_Id" aria-expanded="false" aria-controls="@item.Tdm_Id">
-                        <span class="fa fa-chevron-down"> <strong>@item.Tdms.Count()</strong></span>
-                    </button>
-                </td>
-                <td>
-                    <a class="btn btn-primary" href="@Url.Action("Edit", "Tdms", new { id = @item.Tdm_Id})"><span class="fa fa-pencil"></span></a>
-                    @if (@item.Tdms.Count() == 0)
-                    {
-                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "Tdms", new { id = @item.Tdm_Id})"><span class="fa fa-remove"></span></a>
+        </td>
+
+        <td>
+            <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#@item.value.Tdm_Id" aria-expanded="false" aria-controls="@item.value.Tdm_Id">
+                <span class="fa fa-chevron-down"> <strong>@item.value.Tdms.Count()</strong></span>
+            </button>
+        </td>
+        <td>
+            <a class="btn btn-primary" href="@Url.Action("Edit", "Tdms", new { id = @item.value.Tdm_Id})"><span class="fa fa-pencil"></span></a>
+            @if (@item.value.Tdms.Count() == 0)
+            {
+                <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "Tdms", new { id = @item.value.Tdm_Id})"><span class="fa fa-remove"></span></a>
+            }
+
+        </td>
+        <td>
+            <a href="@Url.Action("EditImg", "Tdms", new {id = @item.value.Tdm_Id })">
+                <img src="@Url.Content("~/Content/Immagini/Tdm/" + @item.value.Tdm_Id + ".png" )" class="img-servizio-sm" />
+            </a>
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.value.Prodotto)
+            <!---Area collapse per dettaglio prodotti TDM-->
+            <div class="collapse" id="@item.value.Tdm_Id">
+                <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "TdmDetts", new { prodotto = @item.value.Tdm_Id})">Nuovo <span class="fa fa-plus"></span></a>
+                <a class="btn btn-success btn-sm" href="@Url.Action("EditOrder", "TdmDetts", new { prodotto = @item.value.Prodotto})">Posizione <span class="fa fa-arrows-v"></span></a>
+               <table class="table table-hover well">
+                        @foreach (var item1 in item.value.Tdms.Select((value, i) => new { i, value }).OrderBy(d => d.value.Posizione))
+                        {
+                        <tr>
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("Edit", "TdmDetts", new { id = @item1.value.TdmDett_Id})"><span class="fa fa-pencil "></span></a>
+                                <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "TdmDetts", new { id = @item1.value.TdmDett_Id})"><span class="fa fa-remove "></span></a>
+                                @item1.value.ProdottoDett
+
+
+                            </td>
+                        </tr>
                     }
+                </table>
+            </div>
+        </td>
+        <td>
+            @Html.Raw(item.value.Descrizione)
+        </td>
+    </tr>
+}
 
-                </td>
-                <td>
-                    <a href="@Url.Action("EditImg", "Tdms", new {id = @item.Tdm_Id })">
-                        <img src="@Url.Content("~/Content/Immagini/Tdm/" + @item.Tdm_Id + ".png" )" class="img-servizio-sm" />
-                    </a>
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prodotto)
-                    <!---Area collapse per dettaglio prodotti TDM-->
-                    <div class="collapse" id="@item.Tdm_Id">
-                        <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "TdmDetts", new { prodotto = @item.Tdm_Id})">Nuovo <span class="fa fa-plus"></span></a>
-                        <table class="table table-hover well">
-                            @foreach (var item1 in item.Tdms)
-                            {
-                                <tr>
-                                    <td>
-                                        <a class="btn btn-primary" href="@Url.Action("Edit", "TdmDetts", new { id = @item1.TdmDett_Id})"><span class="fa fa-pencil "></span></a>
-                                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "TdmDetts", new { id = @item1.TdmDett_Id})"><span class="fa fa-remove "></span></a>
-                                        @item1.ProdottoDett
-
-
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                </td>
-                <td>
-                    @Html.Raw(item.Descrizione)
-                </td>
-            </tr>
-        }
+        </tbody>
 
     </table>
 </div>
+@section Scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            //Memorizza il nuovo ordine sortable dei prodotti
+            $('#sortable').sortable({
+                axis: 'y',
+                update: function (event, ui) {
+                    var sorted = $('#sortable').sortable('toArray');
+                    $.ajax({
+                        type: 'POST',
+                        contentType: "application/json8",
+                        data: JSON.stringify({ items: sorted }),
+                        url: '@Url.Action("SortTdm", "Tdms")',
+                    });
+                }
+            });
+            $("#sortable").disableSelection({});
+        });
+    </script>
+}

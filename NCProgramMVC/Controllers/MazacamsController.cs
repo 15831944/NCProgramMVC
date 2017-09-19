@@ -19,10 +19,32 @@ namespace NCProgramMVC.Controllers
         // GET: Mazacams
         public ActionResult Index()
         {
-            var prodotti = db.Mazacams.OrderBy(s => s.Prodotto).ToList();
+            var prodotti = db.Mazacams.OrderBy(s => s.Posizione).ToList();
             ViewBag.ProdottiCount = prodotti.Count();
             return View(prodotti);
         }
+
+        //Memorizza l'ordine sortable dei prodotti
+        [HttpPost]
+        public ActionResult SortMazacam(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.Mazacams.Where(s => s.Mazacam_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return View();
+        }
+
 
         // GET: Mazacams/Details/5
         public ActionResult Details(int? id)
@@ -82,7 +104,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Mazacam_Id,Prodotto", Exclude = "Descrizione")] Mazacam mazacam)
+        public ActionResult Edit([Bind(Include = "Mazacam_Id,Prodotto,Posizione", Exclude = "Descrizione")] Mazacam mazacam)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             mazacam.Descrizione = collection["Descrizione"];

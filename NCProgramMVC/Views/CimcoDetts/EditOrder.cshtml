@@ -1,0 +1,66 @@
+﻿@model IEnumerable<NCProgramMVC.Models.CimcoDett>
+
+@{
+    ViewBag.Title = "EditOrder";
+}
+
+<div class="container body-content">
+
+    <h2>@ViewBag.Prodotto</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProdottoDett)
+                </th>
+            </tr>
+
+        </thead>
+        <tbody id="sortable">
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                var sortId = @item.value.CimcoDett_Id + "_" + @item.i;
+                <tr id="@sortId">
+                    <td>
+                        <span class="fa fa-arrows-v fa-2x"></span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.ProdottoDett)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+    <hr class="hr2" />
+    <a href="@Url.Action("Index", "Cimcoes")" class="btn btn-success">Fatto</a>
+</div>
+@section Scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            //Memorizza il nuovo ordine sortable dei prodotti
+            $('#sortable').sortable({
+                axis: 'y',
+                update: function (event, ui) {
+                    var sorted = $('#sortable').sortable('toArray');
+                    $.ajax({
+                        type: 'POST',
+                        contentType: "application/json8",
+                        data: JSON.stringify({ items: sorted }),
+                        url: '@Url.Action("SortCimcoDett", "CimcoDetts")',
+                    });
+                }
+            });
+            $("#sortable").disableSelection({});
+        });
+    </script>
+}

@@ -87,7 +87,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TdmDett_Id,Tdm_Id,ProdottoDett", Exclude = "Descrizione")] TdmDett tdmDett)
+        public ActionResult Edit([Bind(Include = "TdmDett_Id,Tdm_Id,ProdottoDett,Posizione", Exclude = "Descrizione")] TdmDett tdmDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             tdmDett.Descrizione = collection["Descrizione"];
@@ -99,6 +99,35 @@ namespace NCProgramMVC.Controllers
             }
             ViewBag.Tdm_Id = new SelectList(db.Tdms, "Tdm_Id", "Prodotto", tdmDett.Tdm_Id);
             return View(tdmDett);
+        }
+
+        // GET: EditOrder
+        public ActionResult EditOrder(string prodotto)
+        {
+            ViewBag.Prodotto = prodotto;
+            var tdmDetts = db.TdmDetts.Where(d => d.Prodotto.Prodotto == prodotto).OrderBy(d => d.Posizione).Include(s => s.Prodotto);
+            return View(tdmDetts.ToList());
+        }
+
+        //Memorizza l'ordine sortable del dettaglio TDM
+        [HttpPost]
+        public ActionResult SortTdmDett(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.TdmDetts.Where(s => s.TdmDett_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Index", "Tdms");
         }
 
         // GET: TdmDetts/Delete/5

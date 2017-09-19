@@ -84,7 +84,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MazacamDett_Id,Mazacam_Id,ProdottoDett", Exclude = "Descrizione")] MazacamDett mazacamDett)
+        public ActionResult Edit([Bind(Include = "MazacamDett_Id,Mazacam_Id,ProdottoDett,Posizione", Exclude = "Descrizione")] MazacamDett mazacamDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             mazacamDett.Descrizione = collection["Descrizione"];
@@ -97,6 +97,38 @@ namespace NCProgramMVC.Controllers
             ViewBag.Mazacam_Id = new SelectList(db.Mazacams, "Mazacam_Id", "Prodotto", mazacamDett.Mazacam_Id);
             return View(mazacamDett);
         }
+
+        // GET: EditOrder
+        public ActionResult EditOrder(string prodotto)
+        {
+            ViewBag.Prodotto = prodotto;
+            var mazacamDetts = db.MazacamDetts.Where(d => d.Prodotto.Prodotto == prodotto).OrderBy(d => d.Posizione).Include(s => s.Prodotto);
+            return View(mazacamDetts.ToList());
+        }
+
+
+
+        //Memorizza l'ordine sortable del dettaglio MAZACAM
+        [HttpPost]
+        public ActionResult SortMazacamDett(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.MazacamDetts.Where(s => s.MazacamDett_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Index", "Mazacams");
+        }
+
 
         // GET: MazacamDetts/Delete/5
         public ActionResult Delete(int? id)

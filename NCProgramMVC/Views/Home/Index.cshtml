@@ -4,7 +4,8 @@
     ViewBag.Title = "Home Page";
 }
 
-<!--Se ci sono slide pubblicate inizio sezione slide--> 
+<!--Inizio sezione slides
+    Se ci sono slide pubblicate inizio sezione slide--> 
 @if (ViewBag.SlidesCount > 0)
 {
     <div id="carousel1" class="carousel slide">
@@ -48,14 +49,14 @@
     </div>
 
                 }
-<!--Fine sezione slide-->
+<!--Fine sezione slides-->
 <div class="container body-content">
     <div class="row">
         @foreach (var item in ViewBag.Servizi)
         {
             <div class="col-md-4 div-homepage">
                 <h2>
-                    <a href="@Url.Action(@item.Prodotto, "Home")"><span><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />@item.Prodotto</span></a>
+                    <a class="img-home" href="@Url.Action(@item.Prodotto, "Home")"><span><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />@item.Prodotto</span></a>
                     @if (User.IsInRole("Admin"))
                     {
                         <a href="@Url.Action("Edit", "GruppoProdottis", new { id = @item.GruppoPodotti_Id })"><span class="fa fa-pencil "></span></a>

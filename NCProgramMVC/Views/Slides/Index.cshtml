@@ -14,6 +14,7 @@
        <table class="table table-hover">
             <thead>
                 <tr>
+                    <th></th>
                     <th>
                         @Html.DisplayNameFor(model => model.Sfondo)
                     </th>
@@ -36,6 +37,10 @@
                 {
                      var sortId = @item.value.Slide_Id + "_" + @item.i;
                     <tr id="@sortId" >
+                        <td>
+                            <span class="fa fa-arrows-v fa-2x"></span>
+
+                        </td>
                         <td>
                             <img class="img-prodotti-sm" src="@Url.Content("~/Content/Immagini/Slides/" + @Html.DisplayFor(modelItem => item.value.Sfondo))" />
                             

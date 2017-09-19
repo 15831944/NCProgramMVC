@@ -82,6 +82,8 @@ namespace NCProgramMVC.Models
         public string Servizio { get; set; }
         [Display(Name ="Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
 
         public virtual ICollection<ServiziDett> Servizis { get; set; }
 
@@ -97,6 +99,8 @@ namespace NCProgramMVC.Models
         public string ServizioDett { get; set; }
         [Display(Name ="Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
     }
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

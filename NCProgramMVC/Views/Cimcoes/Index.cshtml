@@ -18,6 +18,7 @@
             <tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Img</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Prodotto)
@@ -28,55 +29,88 @@
             </tr>
 
         </thead>
+        <tbody id="sortable">
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                var sortId = @item.value.Cimco_Id + "_" + @item.i;
+                <tr id="@sortId">
+                    <td>
+                        <span class="fa fa-arrows-v fa-2x"></span>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#@item.Cimco_Id" aria-expanded="false" aria-controls="@item.Cimco_Id">
-                        <span class="fa fa-chevron-down"> <strong>@item.Cimcos.Count()</strong></span>
-                    </button>
-                </td>
-                <td>
-                    <a class="btn btn-primary" href="@Url.Action("Edit", "Cimcoes", new { id = @item.Cimco_Id})"><span class="fa fa-pencil"></span></a>
-                    @if (@item.Cimcos.Count() == 0)
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#@item.value.Cimco_Id" aria-expanded="false" aria-controls="@item.value.Cimco_Id">
+                            <span class="fa fa-chevron-down"> <strong>@item.value.Cimcos.Count()</strong></span>
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="@Url.Action("Edit", "Cimcoes", new { id = @item.value.Cimco_Id})"><span class="fa fa-pencil"></span></a>
+                        @if (@item.value.Cimcos.Count() == 0)
                     {
-                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "Cimcoes", new { id = @item.Cimco_Id})"><span class="fa fa-remove"></span></a>
+                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "Cimcoes", new { id = @item.value.Cimco_Id})"><span class="fa fa-remove"></span></a>
                     }
 
-                </td>
-                <td>
-                    <a href="@Url.Action("EditImg", "Cimcoes", new {id = @item.Cimco_Id })">
-                        <img src="@Url.Content("~/Content/Immagini/Cimco/" + @item.Cimco_Id + ".png" )" class="img-servizio-sm" />
-                    </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditImg", "Cimcoes", new {id = @item.value.Cimco_Id })">
+                            <img src="@Url.Content("~/Content/Immagini/Cimco/" + @item.value.Cimco_Id + ".png" )" class="img-servizio-sm" />
+                        </a>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prodotto)
-                    <!---Area collapse per dettaglio prodotti CIMCO-->
-                    <div class="collapse" id="@item.Cimco_Id">
-                        <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "CimcoDetts", new { prodotto = @item.Cimco_Id})">Nuovo <span class="fa fa-plus"></span></a>
-                        <table class="table table-hover well">
-                            @foreach (var item1 in item.Cimcos)
-                            {
-                                <tr>
-                                    <td>
-                                        <a class="btn btn-primary" href="@Url.Action("Edit", "CimcoDetts", new { id = @item1.CimcoDett_Id})"><span class="fa fa-pencil "></span></a>
-                                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "CimcoDetts", new { id = @item1.CimcoDett_Id})"><span class="fa fa-remove "></span></a>
-                                        @item1.ProdottoDett
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.Prodotto)
+                        <!---Area collapse per dettaglio prodotti CIMCO-->
+                        <div class="collapse" id="@item.value.Cimco_Id">
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "CimcoDetts", new { prodotto = @item.value.Cimco_Id})">Nuovo <span class="fa fa-plus"></span></a>
+                            <a class="btn btn-success btn-sm" href="@Url.Action("EditOrder", "CimcoDetts", new { prodotto = @item.value.Prodotto})">Posizione <span class="fa fa-arrows-v"></span></a>
+                           <table class="table table-hover well">
+                                @foreach (var item1 in item.value.Cimcos.Select((value, i) => new { i, value }).OrderBy(d => d.value.Posizione))
+                                {
+                            <tr>
+                                <td>
+                                    <a class="btn btn-primary" href="@Url.Action("Edit", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-pencil "></span></a>
+                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-remove "></span></a>
+                                    @item1.value.ProdottoDett
 
 
-                                    </td>
-                                </tr>
+                                </td>
+                            </tr>
                             }
-                        </table>
-                    </div>
-                </td>
-                <td>
-                    @Html.Raw(item.Descrizione)
-                </td>
-            </tr>
-        }
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        @Html.Raw(item.value.Descrizione)
+                    </td>
+                </tr>
+            }
+        </tbody>
 
     </table>
 </div>
+@section Scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            //Memorizza il nuovo ordine sortable dei prodotti
+            $('#sortable').sortable({
+                axis: 'y',
+                update: function (event, ui) {
+                    var sorted = $('#sortable').sortable('toArray');
+                    $.ajax({
+                        type: 'POST',
+                        contentType: "application/json8",
+                        data: JSON.stringify({ items: sorted }),
+                        url: '@Url.Action("SortCimco", "Cimcoes")',
+                    });
+                }
+            });
+            $("#sortable").disableSelection({});
+        });
+    </script>
+}

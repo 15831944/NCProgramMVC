@@ -50,7 +50,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int servizio, [Bind(Include = "ServizoDett_Id,Servizio_Id,ServizioDett", Exclude = "Descrizione")] ServiziDett serviziDett)
+        public ActionResult Create(int servizio, [Bind(Include = "ServizoDett_Id,Servizio_Id,ServizioDett,Posizione", Exclude = "Descrizione")] ServiziDett serviziDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             serviziDett.Descrizione = collection["Descrizione"];
@@ -87,7 +87,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServizoDett_Id,Servizio_Id,ServizioDett", Exclude = "Descrizione")] ServiziDett serviziDett)
+        public ActionResult Edit([Bind(Include = "ServizoDett_Id,Servizio_Id,ServizioDett,Posizione", Exclude = "Descrizione")] ServiziDett serviziDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             serviziDett.Descrizione = collection["Descrizione"];
@@ -99,6 +99,35 @@ namespace NCProgramMVC.Controllers
             }
             ViewBag.Servizio_Id = new SelectList(db.Servizis, "Servizio_Id", "Servizio", serviziDett.Servizio_Id);
             return View(serviziDett);
+        }
+
+        // GET: EditOrder
+        public ActionResult EditOrder(string servizio)
+        {
+            ViewBag.Servizio = servizio;
+            var serviziDetts = db.ServiziDetts.Where(d=>d.Servizio.Servizio == servizio).OrderBy(d=>d.Posizione).Include(s => s.Servizio);
+            return View(serviziDetts.ToList());
+        }
+
+        //Memorizza l'ordine sortable del dettagli dei servizi
+        [HttpPost]
+        public ActionResult SortServiziDett(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.ServiziDetts.Where(s => s.ServizoDett_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Index", "Servizis");
         }
 
         // GET: ServiziDetts/Delete/5

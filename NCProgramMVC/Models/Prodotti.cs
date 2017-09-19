@@ -25,6 +25,8 @@ namespace NCProgramMVC.Models
         public string Prodotto { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
 
         public virtual ICollection<TdmDett> Tdms { get; set; }
 
@@ -40,6 +42,8 @@ namespace NCProgramMVC.Models
         public string ProdottoDett { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
 
     }
 
@@ -52,6 +56,8 @@ namespace NCProgramMVC.Models
         public string Prodotto { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
 
         public virtual ICollection<CimcoDett> Cimcos { get; set; }
 
@@ -67,6 +73,8 @@ namespace NCProgramMVC.Models
         public string ProdottoDett { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
     }
 
     public class Mazacam
@@ -77,6 +85,8 @@ namespace NCProgramMVC.Models
         public string Prodotto { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
 
         public virtual ICollection<MazacamDett> Mazacams { get; set; }
 
@@ -92,6 +102,9 @@ namespace NCProgramMVC.Models
         public string ProdottoDett { get; set; }
         [Display(Name = "Descrizione")]
         public string Descrizione { get; set; }
+        [Display(Name = "Posizione")]
+        public int Posizione { get; set; }
+
     }
 
 }

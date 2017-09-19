@@ -20,10 +20,32 @@ namespace NCProgramMVC.Controllers
         // GET: Servizis
         public ActionResult Index()
         {
-            var servizi = db.Servizis.OrderBy(s => s.Servizio).ToList();
+            var servizi = db.Servizis.OrderBy(s => s.Posizione).ToList();
             ViewBag.ServiziCount = servizi.Count();
             return View(servizi);
         }
+
+        //Memorizza l'ordine sortable dei servizi
+        [HttpPost]
+        public ActionResult SortServizi(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.Servizis.Where(s => s.Servizio_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return View();
+        }
+
 
         // GET: Servizis/Details/5
         public ActionResult Details(int? id)
@@ -51,7 +73,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Servizio_Id,Servizio,Descrizione")] Servizi servizi)
+        public ActionResult Create([Bind(Include = "Servizio_Id,Servizio,Descrizione,Posizione")] Servizi servizi)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +105,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Servizio_Id,Servizio", Exclude = "Descrizione")] Servizi servizi)
+        public ActionResult Edit([Bind(Include = "Servizio_Id,Servizio,Posizione", Exclude = "Descrizione")] Servizi servizi)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             servizi.Descrizione = collection["Descrizione"];

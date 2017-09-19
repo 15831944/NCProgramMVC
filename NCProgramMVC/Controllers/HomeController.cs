@@ -176,20 +176,21 @@ namespace NCProgramMVC.Controllers
             return View();
         }
 
-
         public ActionResult Mission()
         {
             var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "Mission").ToList();
             return View(gruppoProdotti);
         }
+
         public ActionResult Storia()
         {
             var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "Storia").ToList();
             return View(gruppoProdotti);
         }
+
         public ActionResult Servizi()
         {
-            var servizi = db.Servizis.OrderBy(s => s.Servizio).ToList();
+            var servizi = db.Servizis.OrderBy(s => s.Posizione).ToList();
             return View(servizi);
         }
 
@@ -217,13 +218,15 @@ namespace NCProgramMVC.Controllers
         {
             return View();
         }
+
         public ActionResult Software()
         {
             return View();
         }
+
         public ActionResult TDM()
         {
-            var prodotti = db.Tdms.OrderBy(s => s.Prodotto).ToList();
+            var prodotti = db.Tdms.OrderBy(s => s.Posizione).ToList();
             var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "TDM").OrderBy(p=>p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
@@ -245,7 +248,7 @@ namespace NCProgramMVC.Controllers
 
         public ActionResult CIMCO()
         {
-            var prodotti = db.Cimcoes.OrderBy(s => s.Prodotto).ToList();
+            var prodotti = db.Cimcoes.OrderBy(s => s.Posizione).ToList();
             var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "CIMCO").OrderBy(p => p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
@@ -267,7 +270,7 @@ namespace NCProgramMVC.Controllers
 
         public ActionResult Mazac()
         {
-            var prodotti = db.Mazacams.OrderBy(s => s.Prodotto).ToList();
+            var prodotti = db.Mazacams.OrderBy(s => s.Posizione).ToList();
             var gruppoProdotti = db.GruppoProdottis.Where(p => p.Prodotto == "MAZACAM").OrderBy(p => p.Descrizione).ToList();
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);

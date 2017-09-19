@@ -5,7 +5,7 @@
 }
 <div class="container body-content">
 
-    <h2 class="text-center">@Html.DisplayFor(model => model.Servizio.Servizio)</h2>
+    <h2 class="text-center"><a href="@Url.Action("Servizi", "Home")"> @Html.DisplayFor(model => model.Servizio.Servizio) </a></h2>
     <hr class="hrl" />
     <h4>@Html.DisplayFor(model => model.ServizioDett)</h4>
     <hr class="hr2" />

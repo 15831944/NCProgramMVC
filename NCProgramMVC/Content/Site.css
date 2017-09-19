@@ -78,7 +78,8 @@ textarea {
     visibility: hidden;
     margin: -10px 0px 0px 10px;
 }
-    @media (max-width:992px) {
+
+@media (max-width:992px) {
         .img-logo {
             visibility: collapse;
             width:0px;
@@ -89,16 +90,28 @@ textarea {
         }
     }
 
-    .img-servizio {
+.img-servizio {
         width: 100%;
     }
 
-    .img-servizio-sm {
+ .img-servizio-sm {
         width: 40px;
         display: block;
     }
 
-    @media (max-width: 992px) {
+.img-home  {
+    transition: all 0.8s ease;
+    -ms-transform: scale(1.0); /* IE 9 */
+    -webkit-transform: scale(1.0); /* Chrome, Safari, Opera */
+    transform: scale(1.0);
+}
+    .img-home :hover {
+        transition: all 2s ease;
+        -ms-transform: scale(1.4); /* IE 9 */
+        -webkit-transform: scale(1.4); /* Chrome, Safari, Opera */
+        transform: scale(1.4);
+    }
+@media (max-width: 992px) {
         .img-servizio {
             width: 50%;
         }

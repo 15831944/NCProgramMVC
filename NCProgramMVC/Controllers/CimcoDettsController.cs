@@ -49,12 +49,13 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int? prodotto, [Bind(Include = "CimcoDett_Id,Cimco_Id,ProdottoDett", Exclude = "Descrizione")] CimcoDett cimcoDett)
+        public ActionResult Create(int prodotto, [Bind(Include = "CimcoDett_Id,Cimco_Id,ProdottoDett", Exclude = "Descrizione")] CimcoDett cimcoDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             cimcoDett.Descrizione = collection["Descrizione"];
             if (ModelState.IsValid)
             {
+                cimcoDett.Cimco_Id = prodotto;
                 db.CimcoDetts.Add(cimcoDett);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Cimcoes");
@@ -85,7 +86,7 @@ namespace NCProgramMVC.Controllers
         // Per ulteriori dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CimcoDett_Id,Cimco_Id,ProdottoDett", Exclude = "Descrizione")] CimcoDett cimcoDett)
+        public ActionResult Edit([Bind(Include = "CimcoDett_Id,Cimco_Id,ProdottoDett,Posizione", Exclude = "Descrizione")] CimcoDett cimcoDett)
         {
             FormCollection collection = new FormCollection(Request.Unvalidated().Form);
             cimcoDett.Descrizione = collection["Descrizione"];
@@ -97,6 +98,36 @@ namespace NCProgramMVC.Controllers
             }
             ViewBag.Cimco_Id = new SelectList(db.Cimcoes, "Cimco_Id", "Prodotto", cimcoDett.Cimco_Id);
             return View(cimcoDett);
+        }
+
+
+        // GET: EditOrder
+        public ActionResult EditOrder(string prodotto)
+        {
+            ViewBag.Prodotto = prodotto;
+            var cimcoDetts = db.CimcoDetts.Where(d => d.Prodotto.Prodotto == prodotto).OrderBy(d => d.Posizione).Include(s => s.Prodotto);
+            return View(cimcoDetts.ToList());
+        }
+
+        //Memorizza l'ordine sortable del dettaglio Cimco
+        [HttpPost]
+        public ActionResult SortCimcoDett(string[] items)
+        {
+            foreach (var item in items.Select((value, i) => new { i, value }))
+            {
+                var newId = item.value.Substring(0, item.value.IndexOf("_"));
+                var newPos = item.i;
+                int NewId = Convert.ToInt32(newId);
+                int NewPos = Convert.ToInt32(newPos);
+                var sl = db.CimcoDetts.Where(s => s.CimcoDett_Id == NewId).ToList();
+                foreach (var item1 in sl)
+                {
+                    item1.Posizione = NewPos;
+                    db.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Index", "Cimcoes");
         }
 
         // GET: CimcoDetts/Delete/5

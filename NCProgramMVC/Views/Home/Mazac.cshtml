@@ -8,6 +8,7 @@
     <!--- Intestazione della pagina: prevede l'immagine di testa e la descrizione del gruppodi prodotti -->
     @foreach (var itemGr in ViewBag.GruppoProdotti)
     {
+        var colId = "_" + @itemGr.GruppoPodotti_Id;
         <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )" /></h2>
         <a class="row" href="http://www.tdmsystems.com"><img class="img-partner pull-right" src="~/Content/Immagini/MazaCam_C.png" /></a>
         if (User.IsInRole("Admin"))
@@ -17,11 +18,11 @@
         <hr class="hrl" />
         <p>
             @Html.Raw(itemGr.Descrizione)
-            <a role="button" data-toggle="collapse" href="#@itemGr.GruppoPodotti_Id" aria-expanded="false" aria-controls="@itemGr.GruppoPodotti_Id">
+            <a role="button" data-toggle="collapse" href="#@colId" aria-expanded="false" aria-controls="@colId">
                 <span class="fa fa-arrow-circle-down"></span>
             </a>
         </p>
-        <div class="collapse" id="@itemGr.GruppoPodotti_Id">
+        <div class="collapse" id="@colId">
             <div class="well">
                 @Html.Raw(itemGr.DescrizioneDett)
             </div>
@@ -48,14 +49,14 @@
                         </a>
                     }
                 </h2>
-                <!---Collapse servizi-->
+                <!---Collapse prodotti-->
                 <div class="collapse" id="@item.Mazacam_Id">
                     <table class="table table-hover">
-                        @foreach (var item1 in item.Mazacams.OrderBy(p => p.ProdottoDett))
+                        @foreach (var item1 in item.Mazacams.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
                         {
                             <tr>
                                 <td>
-                                    @Html.ActionLink(@item1.ProdottoDett, "ServiziDett", "Home", new { id = item1.MazacamDett_Id }, null)
+                                    @Html.ActionLink(@item1.value.ProdottoDett, "ServiziDett", "Home", new { id = item1.value.MazacamDett_Id }, null)
                                 </td>
                             </tr>
                         }
