@@ -4,10 +4,9 @@
     ViewBag.Title = "Servizi";
 }
 <div class="container body-content">
-
+    <!--- Intestazione della pagina: prevede l'immagine di testa e la descrizione del gruppo di prodotti -->
     <h2 class="text-center"><img class="img-responsive img-prodotti" src="~/Content/Immagini/NCServizi.png" /></h2>
     <hr class="hrl" />
-    
 <p class="text-justify">La programmazione delle macchine utensili, i corsi di istruzione di uso e programmazione dei controlli numerici, la progettazione degli attrezzi di bloccaggio e i cicli di lavorazione, sono una tradizione radicata risalente alla fondazione della società. La società annovera esperienze in molteplici settori della meccanica: aeronautica, automotive, orafa, militare, Alimentare, macchine movimento terra, macchine di produzione, macchine lavorazione legno. L’attività di programmazione può anche beneficiare del supporto di collaudo in macchina per i programmi NC realizzati.</p>
         @foreach (var item in Model)
         {
@@ -17,16 +16,14 @@
                         <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Servizi/" + @item.Servizio_Id + ".png")" />
                  </div>
                 <div class=" col col-md-10">
-                    <h2 class="arancio">
-                        @Html.DisplayFor(modelItem => item.Servizio)
+                        
                     <!---Trigger collapse-->
-                        @if (@item.Servizis.Count() != 0)
-                        {
-                            <a class="badge" role="button" data-toggle="collapse" href="#@item.Servizio_Id" aria-expanded="false" aria-controls="@item.Servizio_Id">
-                                <span class="fa fa-chevron-down"> Servizi attivi</span><br />
-                            </a>
-                        }
-                </h2>
+                        <a role="button" data-toggle="collapse" href="#@item.Servizio_Id" aria-expanded="false" aria-controls="@item.Servizio_Id">
+                            <h2 class="arancio">
+                                @Html.DisplayFor(modelItem => item.Servizio)
+                                <span class="fa fa-chevron-down"></span><br />
+                            </h2>
+                        </a>
                     <!---Collapse servizi-->
                     <div class="collapse" id="@item.Servizio_Id">
                         <table class="table table-hover">
@@ -39,8 +36,8 @@
                                 </tr>
                             }
                         </table>
-                    </div>
-                    <h4>@Html.Raw(item.Descrizione)</h4>
+                        <h4>@Html.Raw(item.Descrizione)</h4>
+                   </div>
                 </div>
           </div>
         }

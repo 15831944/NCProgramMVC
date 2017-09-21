@@ -194,6 +194,21 @@ namespace NCProgramMVC.Controllers
             return View(servizi);
         }
 
+        public ActionResult ServiziProdotti(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Servizi serviziProdotti = db.Servizis.Find(id);
+            if (serviziProdotti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(serviziProdotti);
+        }
+
+
         public ActionResult ServiziDett(int? id)
         {
             if (id == null)

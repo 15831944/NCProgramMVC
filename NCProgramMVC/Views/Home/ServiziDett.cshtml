@@ -7,6 +7,11 @@
 
     <h2 class="text-center"><a href="@Url.Action("Servizi", "Home")"> @Html.DisplayFor(model => model.Servizio.Servizio) </a></h2>
     <hr class="hrl" />
+    <ul class="ncbreadcrumb">
+        <li><a href="@Url.Action("Servizi", "Home")">NCProgram Servizi</a></li>
+        <li><a href="@Url.Action("ServiziProdotti", "Home", new {id = Model.Servizio_Id})">@Html.DisplayFor(model => model.Servizio.Servizio)</a></li>
+        <li><a href="#nogo">@Html.DisplayFor(model => model.ServizioDett)</a></li>
+    </ul>
     <h4>@Html.DisplayFor(model => model.ServizioDett)</h4>
     <hr class="hr2" />
     <div>

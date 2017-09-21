@@ -923,6 +923,7 @@
     <Content Include="Views\Home\TdmProdotti.cshtml" />
     <Content Include="Views\Home\CimcoProdotti.cshtml" />
     <Content Include="Views\Home\MazacamProdotti.cshtml" />
+    <Content Include="Views\Home\ServiziProdotti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Documenti\" />

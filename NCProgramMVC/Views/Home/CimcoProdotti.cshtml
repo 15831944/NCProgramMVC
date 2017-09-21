@@ -5,14 +5,15 @@
 }
 <div class="container body-content">
 
-    <h2 class="text-center"><a href="@Url.Action("Cimco", "Home")">@Html.DisplayFor(model => model.Prodotto) </a></h2>
+    <h2 class="text-center"><img class="img-prodotti-xs pull-left" src="~/Content/Immagini/cimco.png" /><a href="@Url.Action("Cimco", "Home")">@Html.DisplayFor(model => model.Prodotto) </a></h2>
     <hr class="hrl" />
-    <a href="@Url.Action("Cimco", "Home")" class="label label-warning">CIMCO</a>
-    <a href="@Url.Action("CimcoProdotti", "Home", new {id = Model.Cimco_Id })" class="label label-success">@Html.DisplayFor(model => model.Prodotto)</a>
+    <ul class="ncbreadcrumb">
+        <li><a href="@Url.Action("Cimco", "Home")">CIMCO</a></li>
+        <li><a href="@Url.Action("CimcoProdotti", "Home", new {id = Model.Cimco_Id })">@Html.DisplayFor(model => model.Prodotto)</a></li>
+    </ul>
+    
+    
     <hr class="hr2" />
-    <div>
-        @Html.Raw(Model.Descrizione)
-    </div>
     <table class="table table-hover">
 
         @foreach (var item in Model.Cimcos.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
@@ -24,4 +25,7 @@
             </tr>
         }
     </table>
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
 </div>

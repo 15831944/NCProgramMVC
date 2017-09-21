@@ -4,12 +4,14 @@
     ViewBag.Title = "TdmDett";
 }
 <div class="container body-content">
-
-    <h2 class="text-center"><a href="@Url.Action("Tdm", "Home")">@Html.DisplayFor(model => model.Prodotto.Prodotto) </a></h2>
+    <h2 class="text-center">
+        <img class="img-prodotti-xs pull-left" src="~/Content/Immagini/tdm.png" /><a href="@Url.Action("Tdm", "Home")">@Html.DisplayFor(model => model.Prodotto.Prodotto) </a></h2>
     <hr class="hrl" />
-    <a href="@Url.Action("Tdm", "Home")" class="label label-warning">TDM System</a> 
-    <a href="@Url.Action("TdmProdotti", "Home", new {id = Model.Tdm_Id })" class="label label-warning">@Html.DisplayFor(model => model.Prodotto.Prodotto)</a> 
-    <a href="#nogo" class="label label-success">@Html.DisplayFor(model => model.ProdottoDett)</a>
+    <ul class="ncbreadcrumb">
+        <li><a href="@Url.Action("Tdm", "Home")">TDM System</a></li>
+        <li><a href="@Url.Action("TdmProdotti", "Home", new {id = Model.Tdm_Id })">@Html.DisplayFor(model => model.Prodotto.Prodotto)</a></li>
+        <li><a href="#nogo">@Html.DisplayFor(model => model.ProdottoDett)</a></li>
+    </ul>
     <h4>@Html.DisplayFor(model => model.ProdottoDett)</h4>
     <hr class="hr2" />
     <div>
