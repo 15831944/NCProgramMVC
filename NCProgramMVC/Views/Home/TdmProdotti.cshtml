@@ -1,0 +1,27 @@
+﻿@model NCProgramMVC.Models.Tdm
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+
+    <h2 class="text-center"><a href="@Url.Action("Tdm", "Home")">@Html.DisplayFor(model => model.Prodotto) </a></h2>
+    <hr class="hrl" />
+    <a href="@Url.Action("Tdm", "Home")" class="label label-warning">TDM System</a>
+    <a href="@Url.Action("TdmProdotti", "Home", new {id = Model.Tdm_Id })" class="label label-success">@Html.DisplayFor(model => model.Prodotto)</a>
+    <hr class="hr2" />
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
+    <table class="table table-hover">
+
+        @foreach (var item in Model.Tdms.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.value.ProdottoDett, "TdmDett", "Home", new { id = item.value.TdmDett_Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

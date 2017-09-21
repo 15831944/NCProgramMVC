@@ -1,0 +1,27 @@
+﻿@model NCProgramMVC.Models.Cimco
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+
+    <h2 class="text-center"><a href="@Url.Action("Cimco", "Home")">@Html.DisplayFor(model => model.Prodotto) </a></h2>
+    <hr class="hrl" />
+    <a href="@Url.Action("Cimco", "Home")" class="label label-warning">CIMCO</a>
+    <a href="@Url.Action("CimcoProdotti", "Home", new {id = Model.Cimco_Id })" class="label label-success">@Html.DisplayFor(model => model.Prodotto)</a>
+    <hr class="hr2" />
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
+    <table class="table table-hover">
+
+        @foreach (var item in Model.Cimcos.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.value.ProdottoDett, "CimcoDett", "Home", new { id = item.value.CimcoDett_Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

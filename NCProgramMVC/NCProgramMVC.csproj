@@ -920,6 +920,9 @@
     <Content Include="Views\TdmDetts\EditOrder.cshtml" />
     <Content Include="Views\MazacamDetts\EditOrder.cshtml" />
     <Content Include="Views\CimcoDetts\EditOrder.cshtml" />
+    <Content Include="Views\Home\TdmProdotti.cshtml" />
+    <Content Include="Views\Home\CimcoProdotti.cshtml" />
+    <Content Include="Views\Home\MazacamProdotti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Documenti\" />

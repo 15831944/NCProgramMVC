@@ -3,7 +3,18 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container body-content">
 
+    <h2 class="text-center"><a href="@Url.Action("Tdm", "Home")">@Html.DisplayFor(model => model.Tdm_Id) @Html.DisplayFor(model => model.Prodotto) </a></h2>
+    <hr class="hrl" />
+    <a href="@Url.Action("Tdm", "Home")" class="label label-warning">TDM System</a>
+    <a href="@Url.Action("Details", "Tdms", new {id = Model.Tdm_Id })" class="label label-warning">@Html.DisplayFor(model => model.Prodotto)</a>
+    <a href="#nogo" class="label label-success">tre</a>
+    <hr class="hr2" />
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
+</div>
 <h2>Details</h2>
 
 <div>
@@ -28,7 +39,14 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Tdm_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<table class="table table-hover">
+
+    @foreach (var item in Model.Tdms.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(@item.value.ProdottoDett, "TdmDett", "Home", new { id = item.value.TdmDett_Id }, null)
+            </td>
+        </tr>
+    }
+</table>

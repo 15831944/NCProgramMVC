@@ -30,7 +30,6 @@
     }
     <!---Fine intestazione della pagine -->
     <!---Elenco i prodotti di MAZACAM. Nella sezione collapse elenco i dettagli dei prodotti-->
-
     @foreach (var item in Model)
     {
         <hr class="hr2" />
@@ -39,16 +38,13 @@
                 <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Mazacam/" + @item.Mazacam_Id + ".png")" />
             </div>
             <div class=" col col-md-10">
-                <h2 class="arancio">
-                    @Html.DisplayFor(modelItem => item.Prodotto)
-                    <!---Trigger collapse-->
-                    @if (@item.Mazacams.Count() != 0)
-                    {
-                        <a class="badge" role="button" data-toggle="collapse" href="#@item.Mazacam_Id" aria-expanded="false" aria-controls="@item.Mazacam_Id">
-                            <span class="fa fa-chevron-down"> Servizi attivi</span><br />
-                        </a>
-                    }
-                </h2>
+                <!---Trigger collapse-->
+                <a role="button" data-toggle="collapse" href="#@item.Mazacam_Id" aria-expanded="false" aria-controls="@item.Mazacam_Id">
+                    <h2 class="arancio">
+                        @Html.DisplayFor(modelItem => item.Prodotto)
+                        <span class="fa fa-chevron-down"></span><br />
+                    </h2>
+                </a>
                 <!---Collapse prodotti-->
                 <div class="collapse" id="@item.Mazacam_Id">
                     <table class="table table-hover">
@@ -56,13 +52,13 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.ActionLink(@item1.value.ProdottoDett, "ServiziDett", "Home", new { id = item1.value.MazacamDett_Id }, null)
+                                    @Html.ActionLink(@item1.value.ProdottoDett, "MazacDett", "Home", new { id = item1.value.MazacamDett_Id }, null)
                                 </td>
                             </tr>
                         }
                     </table>
+                    <h4>@Html.Raw(item.Descrizione)</h4>
                 </div>
-                <h4>@Html.Raw(item.Descrizione)</h4>
             </div>
         </div>
     }

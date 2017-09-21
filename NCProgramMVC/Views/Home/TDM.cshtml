@@ -8,8 +8,7 @@
     @foreach (var itemGr in ViewBag.GruppoProdotti)
     {
         var colId = "_" + @itemGr.GruppoPodotti_Id;
-        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )"/>
-    </h2>
+        <h2 class="text-center"><img class="img-responsive img-prodotti" src="@Url.Content("~/Content/Immagini/" + @itemGr.Prodotto + ".png" )"/></h2>
         <a class="row" href="http://www.tdmsystems.com"><img class="img-partner pull-right" src="~/Content/Immagini/TDM_C.png" /></a>
         if (User.IsInRole("Admin"))
         {
@@ -18,7 +17,6 @@
         <hr class="hrl" />
         <p>
             @Html.Raw(itemGr.Descrizione) 
-            
             <a role="button" data-toggle="collapse" href="#@colId" aria-expanded="false" aria-controls="@colId">
                 <span class="fa fa-arrow-circle-down"></span>
             </a>
@@ -34,37 +32,34 @@
     @foreach (var item in Model)
     {
         <hr class="hr2" />
-            <div class="row">
-                <div class="col col-md-2 text-center">
-                    <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Tdm/" + @item.Tdm_Id + ".png")" />
-                </div>
-                <div class=" col col-md-10">
+        <div class="row">
+            <div class="col col-md-2 text-center">
+                <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Tdm/" + @item.Tdm_Id + ".png")" />
+            </div>
+            <div class=" col col-md-10">
+                <!---Trigger collapse-->
+                <a role="button" data-toggle="collapse" href="#@item.Tdm_Id" aria-expanded="false" aria-controls="@item.Tdm_Id">
                     <h2 class="arancio">
                         @Html.DisplayFor(modelItem => item.Prodotto)
-                        <!---Trigger collapse-->
-                        @if (@item.Tdms.Count() != 0)
-                        {
-                            <a class="badge" role="button" data-toggle="collapse" href="#@item.Tdm_Id" aria-expanded="false" aria-controls="@item.Tdm_Id">
-                                <span class="fa fa-chevron-down"> Servizi attivi</span><br />
-                            </a>
-                        }
+                        <span class="fa fa-chevron-down"></span><br />
                     </h2>
-                    <!---Collapse prodotti-->
-                    <div class="collapse" id="@item.Tdm_Id">
-                        <table class="table table-hover">
-                            @foreach (var item1 in item.Tdms.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.ActionLink(@item1.value.ProdottoDett, "TdmDett", "Home", new { id = item1.value.TdmDett_Id }, null)
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
+                </a>
+                <!---Collapse prodotti-->
+                <div class="collapse" id="@item.Tdm_Id">
+                    <table class="table table-hover">
+                        @foreach (var item1 in item.Tdms.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(@item1.value.ProdottoDett, "TdmDett", "Home", new { id = item1.value.TdmDett_Id }, null)
+                                </td>
+                            </tr>
+                        }
+                    </table>
                     <h4>@Html.Raw(item.Descrizione)</h4>
                 </div>
             </div>
+        </div>
     }
 
 

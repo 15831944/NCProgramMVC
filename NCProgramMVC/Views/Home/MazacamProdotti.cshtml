@@ -1,0 +1,27 @@
+﻿@model NCProgramMVC.Models.Mazacam
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content">
+
+    <h2 class="text-center"><a href="@Url.Action("Mazacam", "Home")">@Html.DisplayFor(model => model.Prodotto) </a></h2>
+    <hr class="hrl" />
+    <a href="@Url.Action("Mazacam", "Home")" class="label label-warning">MAZACAM</a>
+    <a href="@Url.Action("MazacamProdotti", "Home", new {id = Model.Mazacam_Id })" class="label label-success">@Html.DisplayFor(model => model.Prodotto)</a>
+    <hr class="hr2" />
+    <div>
+        @Html.Raw(Model.Descrizione)
+    </div>
+    <table class="table table-hover">
+
+        @foreach (var item in Model.Mazacams.OrderBy(s => s.Posizione).Select((value, i) => new { i, value }))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.value.ProdottoDett, "MazacDett", "Home", new { id = item.value.MazacamDett_Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

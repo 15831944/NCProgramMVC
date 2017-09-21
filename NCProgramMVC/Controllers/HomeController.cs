@@ -232,6 +232,20 @@ namespace NCProgramMVC.Controllers
             return View(prodotti);
         }
 
+        public ActionResult TdmProdotti(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tdm tdmProdotti = db.Tdms.Find(id);
+            if (tdmProdotti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tdmProdotti);
+        }
+
         public ActionResult TdmDett(int? id)
         {
             if (id == null)
@@ -254,6 +268,21 @@ namespace NCProgramMVC.Controllers
             return View(prodotti);
         }
 
+        public ActionResult CimcoProdotti(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cimco cimcoProdotti = db.Cimcoes.Find(id);
+            if (cimcoProdotti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cimcoProdotti);
+        }
+
+
         public ActionResult CimcoDett(int? id)
         {
             if (id == null)
@@ -275,6 +304,21 @@ namespace NCProgramMVC.Controllers
             ViewBag.GruppoProdotti = gruppoProdotti;
             return View(prodotti);
         }
+
+        public ActionResult MazacamProdotti(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Mazacam mazacamProdotti = db.Mazacams.Find(id);
+            if (mazacamProdotti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(mazacamProdotti);
+        }
+
 
         public ActionResult MazacDett(int? id)
         {

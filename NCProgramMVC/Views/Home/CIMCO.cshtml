@@ -37,16 +37,13 @@
                 <img class="img-servizio" src="@Url.Content("~/Content/Immagini/Cimco/" + @item.Cimco_Id + ".png")" />
             </div>
             <div class=" col col-md-10">
-                <h2 class="arancio">
-                    @Html.DisplayFor(modelItem => item.Prodotto)
-                    <!---Trigger collapse-->
-                    @if (@item.Cimcos.Count() != 0)
-                    {
-                        <a class="badge" role="button" data-toggle="collapse" href="#@item.Cimco_Id" aria-expanded="false" aria-controls="@item.Cimco_Id">
-                            <span class="fa fa-chevron-down"> Servizi attivi</span><br />
-                        </a>
-                    }
-                </h2>
+                <!---Trigger collapse-->
+                <a role="button" data-toggle="collapse" href="#@item.Cimco_Id" aria-expanded="false" aria-controls="@item.Cimco_Id">
+                    <h2 class="arancio">
+                        @Html.DisplayFor(modelItem => item.Prodotto)
+                        <span class="fa fa-chevron-down"></span><br />
+                    </h2>
+                </a>
                 <!---Collapse servizi-->
                 <div class="collapse" id="@item.Cimco_Id">
                     <table class="table table-hover">
@@ -59,8 +56,8 @@
                             </tr>
                         }
                     </table>
+                    <h4>@Html.Raw(item.Descrizione)</h4>
                 </div>
-                <h4>@Html.Raw(item.Descrizione)</h4>
             </div>
         </div>
     }
