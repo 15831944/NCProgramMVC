@@ -60,28 +60,28 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.value.Prodotto)
-                        <!---Area collapse per dettaglio prodotti CIMCO-->
-                        <div class="collapse" id="@item.value.Cimco_Id">
-                            <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "CimcoDetts", new { prodotto = @item.value.Cimco_Id})">Nuovo <span class="fa fa-plus"></span></a>
-                            <a class="btn btn-success btn-sm" href="@Url.Action("EditOrder", "CimcoDetts", new { prodotto = @item.value.Prodotto})">Posizione <span class="fa fa-arrows-v"></span></a>
-                           <table class="table table-hover well">
-                                @foreach (var item1 in item.value.Cimcos.Select((value, i) => new { i, value }).OrderBy(d => d.value.Posizione))
-                                {
-                            <tr>
-                                <td>
-                                    <a class="btn btn-primary" href="@Url.Action("Edit", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-pencil "></span></a>
-                                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-remove "></span></a>
-                                    @item1.value.ProdottoDett
-
-
-                                </td>
-                            </tr>
-                            }
-                            </table>
-                        </div>
                     </td>
                     <td>
                         @Html.Raw(item.value.Descrizione)
+                        <!---Area collapse per dettaglio prodotti CIMCO-->
+                        <div class="collapse well well-sm" id="@item.value.Cimco_Id">
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Create", "CimcoDetts", new { prodotto = @item.value.Cimco_Id})">Nuovo <span class="fa fa-plus"></span></a>
+                            <a class="btn btn-success btn-sm" href="@Url.Action("EditOrder", "CimcoDetts", new { prodotto = @item.value.Prodotto})">Posizione <span class="fa fa-arrows-v"></span></a>
+                            <table class="table table-hover well">
+                                @foreach (var item1 in item.value.Cimcos.Select((value, i) => new { i, value }).OrderBy(d => d.value.Posizione))
+                                {
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-primary" href="@Url.Action("Edit", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-pencil "></span></a>
+                                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", "CimcoDetts", new { id = @item1.value.CimcoDett_Id})"><span class="fa fa-remove "></span></a>
+                                            @item1.value.ProdottoDett
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
                     </td>
                 </tr>
             }

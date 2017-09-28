@@ -15,20 +15,12 @@
                 0362367549<br />
             </address>
 
-            <address>
-                <strong>Supporto:</strong>   <a href="mailto:Support@example.com">Support@ncprogram.it</a>
-            </address>
         </div>
         <div class="col-md-8">
-            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
             {
                 <div class="col col-md-8">
-                    <form>
-                        <div class="form-group">
-                            <div class="col col-md-10">
-                                    @Html.ValidationSummary("", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                    <form data-toggle="validator" role="form">
                         <div class="form-group">
                             <div class="col col-md-10">
                             Per cosa chiedi informazioni?<br/>
@@ -78,6 +70,7 @@
                                 <!-- Button trigger modal -->
                                 <a role="button" href="#myModal" data-toggle="modal"><span class="fa fa-book"> Leggi</span></a><br />
                                 <span class="label label-danger">@ViewBag.Message</span>
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
@@ -205,7 +198,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+</div>
                         </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Invia messaggio</button>

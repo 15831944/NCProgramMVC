@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using System.Globalization;
 
 namespace NCProgramMVC.Controllers
 {
@@ -71,13 +72,15 @@ namespace NCProgramMVC.Controllers
                 ViewBag.Message = "";
                 MailMessage message = new MailMessage(
                     "webservice@ncprogram.it",
-                    "cesare@cr-consult.eu,giuseppe.ferrari@ncprogram.it",
+                    //"cesare@cr-consult.eu,giuseppe.ferrari@ncprogram.it",
+                    "cesare@cr-consult.eu", 
                     "Richiesta informazioni dal sito ncprogram.it",
                     "Il giorno " + DateTime.Now + "<br/><strong>" +
                     contatti.Nome + " " +
                     contatti.Cognome + "</strong> [" +
-                    contatti.Email + "] " +
-                    "<br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it<hr/>Prodotto: <strong>" +
+                    contatti.Email + "] <br/>" +
+                    "Telefono: <strong>" + contatti.Tel +
+                    "</strong><br/> ha inviato una richiesta di informazioni dal sito www.ncprogram.it<hr/>Prodotto: <strong>" +
                     contatti.Prodotto + 
                     "</strong><br/>Richiesta:<strong>" +
                     contatti.Messaggio +

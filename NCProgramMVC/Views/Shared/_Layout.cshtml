@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - NCProgram</title>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-
+    <script src="~/Scripts/validator.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -26,10 +26,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*Menu autenticati*@
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "blu h4", title = "Home" })</li>
+                    <li>@Html.ActionLink(" ", "Index", "Home", null, new { @class = "blu fa fa-home fa-2x", title = "Home" })</li>
                     <li>@Html.ActionLink("TDM Systems", "TDM", "Home", null, new { @class = "blu h4" })</li>
                     <li>@Html.ActionLink("CIMCO", "CIMCO", "Home", null, new { @class = "blu h4" })</li>
                     <li>@Html.ActionLink("MazaCam", "Mazac", "Home", null, new { @class = "blu h4" })</li>
+                    <li>@Html.ActionLink("Contatti", "Contact", "Home", null, new { @class = "blu h4" })</li>
                     <li>
                         @Html.ActionLink(" ", "IndexDoc", "Home", null, new { @class = "fa fa-download blu fa-2x", title = "Area download" })
                     </li>
