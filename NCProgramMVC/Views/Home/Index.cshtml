@@ -55,13 +55,13 @@
         @foreach (var item in ViewBag.Servizi)
         {
             <div class="col-md-4 div-homepage">
-                <h2>
-                    <a class="img-home" href="@Url.Action(@item.Prodotto, "Home")"><span><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".png")" />@item.Prodotto</span></a>
+                <div class="img-home">
+                    <a href="@Url.Action(@item.Prodotto, "Home")"><img src="@Url.Content("~/Content/Immagini/" + item.Prodotto + ".jpg")" /><br /><span class="h3">@item.Prodotto</span></a>
                     @if (User.IsInRole("Admin"))
                     {
                         <a href="@Url.Action("Edit", "GruppoProdottis", new { id = @item.GruppoPodotti_Id })"><span class="fa fa-pencil "></span></a>
                     }
-                </h2>
+                </div>
                 <p class="text-justify">
                     @Html.Raw(item.Descrizione)
                     <a href="@Url.Action(@item.Prodotto, "Home")"><span class="fa fa-chevron-circle-right arancio"></span></a>

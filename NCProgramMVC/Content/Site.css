@@ -107,12 +107,13 @@ textarea {
     -ms-transform: scale(1.0); /* IE 9 */
     -webkit-transform: scale(1.0); /* Chrome, Safari, Opera */
     transform: scale(1.0);
+    text-align:center;
+    border-bottom: solid thin #ef7a1b;
 }
-    .img-home :hover {
-        transition: all 2s ease;
-        -ms-transform: scale(1.4); /* IE 9 */
-        -webkit-transform: scale(1.4); /* Chrome, Safari, Opera */
-        transform: scale(1.4);
+    .img-home img{
+        height:150px;
+        border-radius:50%;
+        border: solid thick #ef7a1b
     }
 @media (max-width: 992px) {
         .img-servizio {

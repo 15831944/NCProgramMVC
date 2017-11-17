@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -249,6 +250,7 @@
     <Content Include="Content\Immagini\cimco.png" />
     <Content Include="Content\Immagini\Cimco\1.png" />
     <Content Include="Content\Immagini\download.png" />
+    <Content Include="Content\Immagini\Lavoro.jpg" />
     <Content Include="Content\Immagini\LogoSfumato.png" />
     <Content Include="Content\Immagini\Mazacam.png" />
     <Content Include="Content\Immagini\Mazacam\1.png" />
@@ -259,7 +261,9 @@
     <Content Include="Content\Immagini\FotoIscritti\b5c4d630-583d-4ef2-8994-70abb4bc2124.jpg" />
     <Content Include="Content\Immagini\Logo.png" />
     <Content Include="Content\Immagini\Mission.jpg" />
+    <Content Include="Content\Immagini\NCMission.png" />
     <Content Include="Content\Immagini\NCServizi.png" />
+    <Content Include="Content\Immagini\NCStoria.png" />
     <Content Include="Content\Immagini\Servizi\1.png" />
     <Content Include="Content\Immagini\Servizi\3.png" />
     <Content Include="Content\Immagini\Servizi\2.png" />

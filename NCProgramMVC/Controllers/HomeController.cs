@@ -71,9 +71,8 @@ namespace NCProgramMVC.Controllers
                 {
                 ViewBag.Message = "";
                 MailMessage message = new MailMessage(
-                    "webservice@ncprogram.it",
-                    //"cesare@cr-consult.eu,giuseppe.ferrari@ncprogram.it",
-                    "cesare@cr-consult.eu", 
+                    "webservice@ncprogram.com",
+                    "cesare@cr-consult.eu,giuseppe.ferrari@ncprogram.it",
                     "Richiesta informazioni dal sito ncprogram.it",
                     "Il giorno " + DateTime.Now + "<br/><strong>" +
                     contatti.Nome + " " +

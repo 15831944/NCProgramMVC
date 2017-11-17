@@ -8,7 +8,7 @@
     <h2 class="text-center"><img class="img-prodotti-xs pull-left" src="~/Content/Immagini/Mazacam.png" /><a href="@Url.Action("Mazac", "Home")">@Html.DisplayFor(model => model.Prodotto.Prodotto) </a></h2>
     <hr class="hrl" />
     <ul class="ncbreadcrumb">
-        <li><a href="@Url.Action("Mazacam", "Home")" >MAZACAM</a></li>
+        <li><a href="@Url.Action("Mazac", "Home")" >MAZACAM</a></li>
         <li><a href="@Url.Action("MazacamProdotti", "Home", new {id = Model.Mazacam_Id })" >@Html.DisplayFor(model => model.Prodotto.Prodotto)</a></li>
         <li><a href="#nogo">@Html.DisplayFor(model => model.ProdottoDett)</a></li>
     </ul>
